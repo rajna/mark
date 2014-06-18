@@ -1,0 +1,19 @@
+div(class="navbar navbar-inverse navbar-fixed-top",role="navigation")
+	div(class="container")
+		div(class="navbar-header top-fuc") 
+			span(class="glyphicon glyphicon-remove",ng-click="toLogin()") 
+			span(class="r-title") 注册账号
+		div(class="pull-right top-fuc")
+			span(class="glyphicon glyphicon-ok")
+
+div(class="container mark-container")
+	ng-form(role="form",class="register-form",name="addaccount")
+		div(class="form-group")
+			input(type="text",class="form-control",ngbk-focus,placeholder="用户名",required,ng-model='form.name')
+			p(class="text-danger") {{message}}
+		div(class="form-group")
+			input(type="email",class="form-control",placeholder="邮箱",required,ng-model='form.email')
+		div(class="form-group")
+			input(type="password",class="form-control",placeholder="密码",required,ng-model='form.password')
+		button(ng-click="reg()",class="btn btn-default",ng-disabled='!addaccount.$valid') 注册
+	
