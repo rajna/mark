@@ -65,7 +65,7 @@ app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
 
 // JSON API
-app.get('/books/booklist', api.booklist);
+app.get('/books/:user/booklist', api.booklist);
 app.get('/books/:id', api.singleBook);
 app.post('/books', api.addMark);
 app.delete('/books/:id', api.removeMark);
@@ -73,12 +73,8 @@ app.post('/api/addMark', api.addMark);
 
 app.post('/api/reg', api.reg);
 
-//检查是否已登陆
-//app.get('/user/login', api.checkNotLogin);
 //登陆
 app.post('/api/login', api.login);
-//登出
-app.get('/user/logout', api.logout);
 
 //网络爬虫
 app.post('/api/baike', api.baike);

@@ -19,7 +19,7 @@ var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000
  */
 var real_mongodbUri = 'mongodb://guwu:1223@ds061238.mongolab.com:61238/mark';
 var test_mongodbUri = 'mongodb://localhost/mark';
-var mongooseUri = uriUtil.formatMongoose(real_mongodbUri);
+var mongooseUri = uriUtil.formatMongoose(test_mongodbUri);
 mongoose.connect(mongooseUri, options);
 var db=mongoose.connection;
 db.on('error',function(){
@@ -33,23 +33,6 @@ var MarkSchema=require('../models/mark.js').MarkSchema;
 var Mark=db.model('marks',MarkSchema);
 
 
-// exports.checkNotLogin=function(req,res,next){
-//   if(req.session.user){
-//     res.json({
-//       user:req.session.user
-//     });
-//     return
-//   }
-//   next();
-// }
-
-exports.logout=function(req,res){
-  req.session.user=null;
-  res.json({
-    user:null
-  });
-  return;
-}
 //用户登陆API
 exports.login=function(req,res){
         var md5 = crypto.createHash('md5'), 
@@ -118,7 +101,8 @@ exports.reg=function(req,res){
 
 //书籍列表API
 exports.booklist = function (req, res) {
-      Mark.find({},function(error,data){
+      var query={user:req.params.user};
+      Mark.find(query,function(error,data){
         var books =[];
         data.forEach(function (book, i) {
           books.push({
@@ -129,6 +113,7 @@ exports.booklist = function (req, res) {
             bookface: book.bookface
           });
         });
+        console.log(query);
         res.json(books);
       });	
     };
@@ -147,15 +132,20 @@ exports.singleBook = function (req, res) {
     };
 
 exports.addMark = function (req, res) {
+  if(!req.body.user){
+    res.json({
+     msg:false
+    });
+  }
    var book=new Mark({
+    user:req.body.user,
     name:req.body.name,
     bookface:req.body.bookface,
     pagenum:req.body.pagenum,
     bookdesc:req.body.bookdesc
    });
 
-   //调用addMark函数
-          book.save(function(err, doc){
+    book.save(function(err, doc){
                if(err){
                    res.json({
                       msg:false
@@ -164,7 +154,7 @@ exports.addMark = function (req, res) {
                res.json({
                       msg:true
                     });
-          })
+          })      
 };
 
 exports.removeMark = function (req, res) {

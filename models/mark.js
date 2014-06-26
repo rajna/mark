@@ -1,9 +1,11 @@
 var mongoose = require('mongoose');
 exports.MarkSchema=new mongoose.Schema({ 
+	      user:String,
           name: String,
           bookface: String,
           pagenum:String,
-          bookdesc:String
+          bookdesc:String,
+          data:Date
         });
 
 // var mongodb = require('./db');
