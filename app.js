@@ -3,17 +3,17 @@
  * Module dependencies
  */
 
-var mongodb = require("mongodb");
-var server = new mongodb.Server('localhost',27017,{auto_reconnect:true},10);
-var db = new mongodb.Db("mydb2",server,{safe:true});
+//var mongodb = require("mongodb");
+//var server = new mongodb.Server('localhost',27017,{auto_reconnect:true},10);
+//var db = new mongodb.Db("mydb2",server,{safe:true});
 
 var express = require('express'),
   routes = require('./routes'),
   api = require('./routes/api'),
   http = require('http'),
   path = require('path'), 
-  MongoStore = require('connect-mongo')(express),
-  settings = require('./settings'),
+  //MongoStore = require('connect-mongo')(express),
+  //settings = require('./settings'),
   flash=require('connect-flash');//页面的通知和错误信息显示
 
 var app = module.exports = express();
@@ -33,15 +33,15 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 
 app.use(express.cookieParser());
-app.use(express.session({
-  secret: settings.cookieSecret,
-  key: settings.db,
-  cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},//30 days
-  store: new MongoStore({
-    db: settings.db
-  })
+// app.use(express.session({
+//   secret: settings.cookieSecret,
+//   key: settings.db,
+//   cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},//30 days
+//   store: new MongoStore({
+//     db: settings.db
+//   })
 
-}));
+// }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(app.router);
 
@@ -74,7 +74,7 @@ app.post('/api/addMark', api.addMark);
 app.post('/api/reg', api.reg);
 
 //检查是否已登陆
-app.get('/user/login', api.checkNotLogin);
+//app.get('/user/login', api.checkNotLogin);
 //登陆
 app.post('/api/login', api.login);
 //登出

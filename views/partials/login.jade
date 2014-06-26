@@ -6,7 +6,7 @@ div(class="login-content")
 
 	ng-form(role="form",class="login-form",name="loginform")
 		div(class="form-group")
-			input(type="text",ngbk-focus,class="form-control",placeholder="用户名",ng-model="form.name",required)
+			input(type="text",ngbk-focus,class="form-control",placeholder="邮箱",ng-model="form.email",required)
 			p(class="text-danger") {{error}}
 		div(class="form-group")
 			input(type="password",class="form-control",placeholder="密码",required,ng-model="form.password")

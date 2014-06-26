@@ -6,13 +6,13 @@ angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
   controller('loginController', function ($scope,$http,$location,$cookieStore) {
     $scope.logo="MARK";
 
-    $http.get('/user/login').
-        success(function(data){
-          if(data.user!=null){
-            $scope.user=data.user;
-            $location.path('/mark');
-          }
-        });
+    // $http.get('/user/login').
+    //     success(function(data){
+    //       if(data.user!=null){
+    //         $scope.user=data.user;
+    //         $location.path('/mark');
+    //       }
+    //     });
 
     $scope.login= function () {
       $http.post('/api/login',$scope.form).
@@ -50,18 +50,16 @@ angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
     };
   }).
   controller('BooksController', function($scope, $http, $location,$cookieStore,$q,Book) {
-    $http.get('/user/login').
-        success(function(data){
-          if(data.user==null){
-            $scope.user=data.user;
-            $location.path('/login');
-          }else{
-            $scope.user=data.user;
-          }
-        });
-     //$http.get('/books/booklist').success(function(data, status, headers, config) {
-        //$scope.books = data;
-     //});
+    // $http.get('/user/login').
+    //     success(function(data){
+    //       if(data.user==null){
+    //         $scope.user=data.user;
+    //         $location.path('/login');
+    //       }else{
+    //         $scope.user=data.user;
+    //       }
+    //     });
+     
      $scope.books = Book.query();
      $scope.form = {};
      $scope.title="MARK";

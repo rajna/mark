@@ -1,10 +1,10 @@
-body{background-color: #e3e4dc;}
+body{background-color: #eeeeee;}
 .loading-hide{display:none;}
-.navbar-fixed-top{height:56px;background-color: rgba(90, 125, 85, 0.9);border-width:0 0 0 0;}
+.navbar-fixed-top{height:56px;background-color: rgba(218, 220, 209, 0.9);border-width:0 0 0 0;}
 .mark-logo{
 	border: 3px solid #333;
-	border-color:#fff transparent #fff transparent;
-	color:#fff;
+	border-color:#ea171d transparent #ea171d transparent;
+	color:#ea171d;
 	width:42px;
 	height:42px;
 	border-radius: 100%;
@@ -14,11 +14,11 @@ body{background-color: #e3e4dc;}
 	margin:5px 0 0 5px;
 	cursor:pointer;
 }
-.login-content{background-color:#5a7c57;padding:24px 24px 244px 24px;}
+.login-content{background-color:#dadcd1;padding:24px 24px 244px 24px;}
 h3.login-logo{
     border: 6px solid #333;
-	border-color:#fff transparent #fff transparent;
-	color:#fff;
+	border-color:#e81a1e transparent #e81a1e transparent;
+	color:#e81a1e;
 	width:84px;
 	height:84px;
 	border-radius: 100%;
@@ -27,35 +27,35 @@ h3.login-logo{
 	font-size:24px;
 	margin:0 auto 0 auto;
 }
-.login-intro{width:90px;margin:12px auto 0 auto;color:#9eb296;text-align:center;}
+.login-intro{width:90px;margin:12px auto 0 auto;color:#000;text-align:center;}
 .login-intro a{color:#fff;margin:0 0 0 3px;cursor:pointer;border-bottom:1px dashed #fff;}
 .login-intro a:hover{text-decoration:none;border-bottom:1px solid #fff;}
 .login-form{margin:24px auto 0;padding:0 48px;}
 .login-form .form-control{border:1px solid #fff;
--webkit-box-shadow: 0 4px 0 0 #6d9669;
-box-shadow: 0 4px 0 0 #6d9669;
+-webkit-box-shadow: 0 4px 0 0 #8a947e;
+box-shadow: 0 4px 0 0 #8a947e;
 border-radius:0px;
 }
 .login-form .btn-default{
--webkit-box-shadow: 0 4px 0 0 #6d9669;
-box-shadow: 0 4px 0 0 #6d9669;
+-webkit-box-shadow: 0 4px 0 0 #8a947e;
+box-shadow: 0 4px 0 0 #8a947e;
 border-radius:3px;
 width:100%;
-background-color:#92c98d;
-border:1px solid #92c98d;
-color:#e7e4df;
+background-color:#a4ac9d;
+border:1px solid #a4ac9d;
+color:#fff;
 cursor:pointer;
 }
 .creat-account{
 	position:fixed;
 	bottom:0px;
 	left:0px;
-	background-color:#e3e4dc;
+	background-color:#fff;
 	padding:12px;
 	width:100%;
 	text-align:center;
 }
-.creat-account a{color:#627d5e;}
+.creat-account a{color:#e81a1e;}
 .navbar-header{
 	float:left;
 }
@@ -65,6 +65,10 @@ margin-top: 16px;
 font-size: 18px;
 margin-left:16px;
 color:#fff;
+}
+.top-fuc .glyphicon:hover{
+	color:#000;
+	cursor:pointer;
 }
 
 
@@ -194,7 +198,7 @@ margin: 5px 0 0 5px;
 cursor: pointer;
 }
 .mk-cancle{border-right:1px solid #e3e5d8;}
-.mk-menu-f{background-color: #9fb296;border-bottom:1px solid #a3a3a3;}
+.mk-menu-f{background-color: rgba(218, 220, 209, 1);;border-bottom:1px solid #a3a3a3;}
 .mk-addmark{border:none;background:none;color: #5d5d5d;font-size: 18px;}
 
 .mk-add-form .form-group{
