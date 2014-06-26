@@ -3,7 +3,29 @@
  */
 var crypto = require('crypto'); //密码加密模块
 var mongoose=require('mongoose');
-var db=mongoose.connect('mongodb://localhost/mark');
+var uriUtil = require('mongodb-uri');
+/* 
+ * Mongoose by default sets the auto_reconnect option to true.
+ * We recommend setting socket options at both the server and replica set level.
+ * We recommend a 30 second connection timeout because it allows for 
+ * plenty of time in most operating environments.
+ */
+var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } }, 
+                replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } };       
+ /*
+ * Mongoose uses a different connection string format than MongoDB's standard.
+ * Use the mongodb-uri library to help you convert from the standard format to
+ * Mongoose's format.
+ */
+var real_mongodbUri = 'mongodb://guwu:1223@ds061238.mongolab.com:61238/mark';
+var test_mongodbUri = 'mongodb://localhost/mark';
+var mongooseUri = uriUtil.formatMongoose(real_mongodbUri);
+mongoose.connect(mongooseUri, options);
+var db=mongoose.connection;
+db.on('error',function(){
+    console.log("链接数据库失败");
+    return;
+});
 
 var UserSchema=require('../models/user.js').UserSchema;
 var User=db.model('users',UserSchema);
