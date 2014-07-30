@@ -32,7 +32,8 @@
 
    <!--登陆界面-->
    <script type="text/ng-template" id="loginView">
-    <div class="login-content mk-view-animate" ng-controller="loginController">
+    <div style="width:100%;position:relative">
+    <div class="login-content" ng-controller="loginController">
       <h3 class="login-logo">[[logo]]</h3>
       <div class="login-intro">
         记录读过的书
@@ -48,11 +49,14 @@
               
             </div>
             <button type="submit" class="btn btn-default" ng-click="login()" ng-disabled='!loginform.$valid'>提交</button>
-            <div class="creat-account">
+            
+        </ng-form>
+
+      </div>
+      <div class="creat-account">
               <a href="/register">创建账号</a>
             </div>
-        </ng-form>
-      </div>
+  </div>
   </div>
 </script>
 

@@ -48,10 +48,7 @@ body{background-color: #f5f5f5;}
     75%  { -webkit-transform: rotate(-720deg) scale(0.8); transform: rotate(-720deg) scale(0.8); }
     100% { -webkit-transform: rotate(-360deg); transform: rotate(-0deg); }
 }
-.mk-view-animate{
-	-webkit-transition: all 0.5s;
-	transition: all 0.5s;
-}
+
 .loading-hide{display:none;}
 .navbar-fixed-top{height:56px;background-color: rgba(233,30,99, 0.9);border-width:0 0 0 0;}
 .mark-logo{
@@ -100,7 +97,6 @@ color:#fff;
 cursor:pointer;
 }
 .creat-account{
-	position:fixed;
 	bottom:0px;
 	left:0px;
 	background-color:#fff;
@@ -302,28 +298,6 @@ margin-bottom: 6px;
     width: 100%;
     -webkit-backface-visibility: hidden;
     perspective: 1000;
-    color: #FFFFFF;
-}
-
-.pages {
-    height: inherit;
-    padding: 2rem;
-}
-
-#page1 {
-    background-color: #0AC2D2;
-}
-
-#page2 {
-    background-color: #60D7A9;
-}
-
-#page3 {
-    background-color: #FDC162;
-}
-
-#page4 {
-    background-color: #FD6A62;
 }
 
 
