@@ -97,6 +97,7 @@ color:#fff;
 cursor:pointer;
 }
 .creat-account{
+	position:absolute;
 	bottom:0px;
 	left:0px;
 	background-color:#fff;
