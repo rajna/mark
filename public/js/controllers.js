@@ -5,6 +5,7 @@
 angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
   controller('loginController', function ($scope,$http,$location,$cookieStore) {
     $scope.logo="MARK";
+
     if($cookieStore.get('user')){
       $location.path('/mark');
      }
@@ -42,7 +43,7 @@ angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
   }).
   controller('BooksController', function($scope, $http, $location,$cookieStore,$q,Book) {
      if(!$cookieStore.get('user')){
-      $location.path('/');
+      $location.path('/login');
      }
      $scope.user=$cookieStore.get('user');
      $scope.books = Book.query({user:$cookieStore.get('user').name});

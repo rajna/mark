@@ -8,6 +8,7 @@
 //var db = new mongodb.Db("mydb2",server,{safe:true});
 
 var express = require('express'),
+  swig = require('swig'),
   routes = require('./routes'),
   api = require('./routes/api'),
   http = require('http'),
@@ -25,8 +26,10 @@ var app = module.exports = express();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
+// Engine
+app.engine('html', swig.renderFile);
 app.set('views', __dirname + '/views');
-app.set('view engine', 'jade');
+app.set('view engine', 'html');
 app.use(flash());//页面的通知和错误信息显示
 app.use(express.logger('dev'));
 app.use(express.bodyParser());

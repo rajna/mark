@@ -1,34 +1,35 @@
 'use strict';
 
-// Declare app level module which depends on filters, and services
-
 angular.module('myApp', [
   'ngRoute',
   'myApp.controllers',
   'myApp.filters',
   'myApp.services',
   'myApp.directives'
-]).
+],function ($interpolateProvider) {
+        $interpolateProvider.startSymbol('[[');
+        $interpolateProvider.endSymbol(']]');
+    }).
 config(function ($routeProvider, $locationProvider,$httpProvider) {
   $routeProvider.
     when('/login', {
-      templateUrl: 'partials/login',
-      controller: 'loginController'
+      controller: 'loginController',
+      template: document.getElementById('loginView').text
     }).
     when('/register', {
-      templateUrl: 'partials/register',
-      controller: 'registerController'
+      controller: 'registerController',
+      template: document.getElementById('registerView').text
     }).
     when('/mark', {
-      templateUrl: 'partials/marklist',
-      controller: 'BooksController'
+      controller: 'BooksController',
+      template: document.getElementById('marklistView').text
     }).
     when('/books/:id', { 
-     templateUrl: 'partials/booknewmark',
+     template: document.getElementById('booknewmarkView').text,
      controller: 'BookmarkedController' 
    }).
     when('/addMark', {
-      templateUrl: 'partials/addMark',
+      template: document.getElementById('addmarkView').text,
       controller: 'BooksController'
     }).
     when('/baike', {

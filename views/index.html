@@ -1,0 +1,262 @@
+<!doctype html>
+<html ng-app="myApp">
+  <head>
+    <meta charset='utf8'>
+    <meta http-equiv='X-UA-Compatible',content='IE=edge'>
+    <meta name='viewport',content='width=device-width,initial-scale=1'>
+    <title>MARK</title>
+    <link rel='stylesheet' href='/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='/css/mark.css'>
+  </head>
+  <body>
+    <div butterbar><h3 class="login-logo ng-binding">MARK</h3>myApp.controllers</div>
+    <div ng-view>
+    </div>
+ </body>
+</html>
+
+  <script src='js/lib/angular/angular.js'></script>
+  <script src='js/lib/angular/angular-route.js'></script>
+  <script src='js/lib/angular/angular-sanitize.js'></script>
+  <script src='js/lib/angular/angular-cookies.js'></script>
+  <script src='js/lib/angular/angular-resource.js'></script>
+  <script src='js/app.js'></script>
+  <script src='js/services.js'></script>
+  <script src='js/controllers.js'></script>
+  <script src='js/filters.js'></script>
+  <script src='js/directives.js'></script>
+
+   <!--登陆界面-->
+   <script type="text/ng-template" id="loginView">
+    <div class="login-content" ng-controller="loginController">
+      <h3 class="login-logo">[[logo]]</h3>
+      <div class="login-intro">
+        记录读过的书
+      </div>
+
+        <ng-form role="form" class="login-form" name="loginform">
+            <div class="form-group">
+            <input type="text" ngbk-focus class="form-control" placeholder="邮箱" ng-model="form.email" required>
+            </div>
+            <p class="text-danger">[[error]]</p>
+            <div class="form-group">
+              <input type="password" class="form-control" placeholder="密码" required ng-model="form.password">
+              
+            </div>
+            <button type="submit" class="btn btn-default" ng-click="login()" ng-disabled='!loginform.$valid'>提交</button>
+            <div class="creat-account">
+              <a href="/register">创建账号</a>
+            </div>
+        </ng-form>
+      </div>
+  </div>
+</script>
+
+<!--注册界面start-->
+<script type="text/ng-template" id="registerView">
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header top-fuc">
+      <span class="glyphicon glyphicon-remove" ng-click="toLogin()"></span>
+      <span class="r-title"> 注册账号</span>
+    </div>
+    <div class="pull-right top-fuc">
+      <span class="glyphicon glyphicon-ok"></span>
+    </div>
+  </div>
+</div>
+
+<div class="container mark-container">
+  <ng-form role="form" class="register-form" name="addaccount">
+    <div class="form-group">
+      <input type="text" class="form-control" ngbk-focus placeholder="用户名" required ng-model='form.name'/>
+      <p class="text-danger"> [[message]]</p>
+    </div>
+    <div class="form-group">
+      <input type="email" class="form-control" placeholder="邮箱" required ng-model='form.email'/>
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control" placeholder="密码" required ng-model='form.password'/>
+    </div>
+    <button ng-click="reg()" class="btn btn-default" ng-disabled='!addaccount.$valid'> 注册</button>
+  </ng-form>
+</div>
+</script>
+<!--注册界面end-->
+
+<!--书籍mark列表start-->
+<script type="text/ng-template" id="marklistView">
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <h3 class="mark-logo" ng-click="openNav()">[[title]]</h3>
+    </div>
+    <div class="pull-right top-fuc">
+      <span class="glyphicon glyphicon-bell"></span>
+      <span class="glyphicon glyphicon-repeat" ng-click="loadBooks()"></span>
+      <span class="glyphicon glyphicon-search"></span>
+    </div>
+  </div>
+</div>
+
+<div class="container mark-container">
+  <nav class="mk-menu-wrapper mk-open-[[openMenu]]">
+    <ul class="mk-menu">
+      <li class="mk-m-user"> 
+        <p> [[user.name]]</p>
+        <p> [[user.email]]</p>
+      </li>
+      <li>
+        <span class="glyphicon glyphicon-bell"> 提醒</span></li>
+      <li class="mk-m-logout">
+        <a ng-click="logout()"> 退出</a>
+      </li>
+    </ul>
+  </nav>
+  <div>
+    <div class="mark-action row">
+      <div class="col-xs-6">
+        <a href="addMark">
+          <span class="glyphicon glyphicon-list-alt"></span>
+        </a>
+      </div>
+      <div class="col-xs-6">
+        <a href="">
+          <span class="glyphicon glyphicon-camera"></span>
+        </a>
+      </div>
+    </div> 
+    <ul class="media-list booklist">
+      <li class="media" ng-repeat="book in books">
+          <div class="row">
+            <div class="col-xs-10">
+              <div class="row">
+                <a href="/books/[[book.id]]">
+                  <img class="media-object pull-left" ng-src="[[book.bookface]]"/>
+                </a>
+                <div>
+                  <h3 class="mark-title"> [[book.name]]</h3>
+                  <h4 class="mark-info"> guwu 15min </h4>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-2">
+              <p class="mark-pagenumber pull-right">
+                <span class="half-circle">[[book.pagenum]]</span>
+              </p>
+            </div>
+          </div>
+          <div class="row book-desc">[[book.bookdesc]]</div>
+          <div class="row book-act">
+            <div class="col-xs-9">
+              <span class="glyphicon glyphicon-heart-empty"></span>
+              <span class="glyphicon glyphicon-comment"></span>
+              <span class="glyphicon glyphicon-share"></span>
+            </div>
+            <div class="col-xs-3">
+              <span class="glyphicon glyphicon-bookmark pull-right" ng-click="addNewmark(book)"></span>
+              <span class="glyphicon glyphicon-remove pull-right" ng-click="remove($index,book)"></span>
+            </div>
+          </div>
+        </li>
+      </ul>
+ </div>
+</div>       
+</script>
+<!--书籍mark列表end-->
+ 
+<!--书籍newmark start-->
+<script type="text/ng-template" id="booknewmarkView">
+<div class="navbar navbar-inverse navbar-fixed-top mk-menu-f"role="navigation">
+  <div class="container">
+    <div class="row mk-t-fun">
+      <div class="col-xs-6 mk-cancle">
+        <span class="glyphicon glyphicon-remove"></span>
+        <span>取消</span>
+      </div>
+      <div class="col-xs-6">
+        <span class="glyphicon glyphicon-send"></span>
+        <button class="mk-addmark" ng-disabled='!booknewmark.$valid' ng-click="save()">添加</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container mark-container">
+  <div class="row">
+    <div class="col-md-12">
+      <ng-form class="form mk-add-form" role="form" name="booknewmark">
+        <div style="text-align:center;background:rgba(0,0,0,0.3);padding:12px;margin:12px 0;">
+          <img ng-src="[[book.bookface]]"/>
+          
+          <input type="text" class="form-control" style="display:none" ng-model='book.bookface' disabled="disabled"/>
+        </div>
+        <div class="form-group">
+          <label> 书名</label>
+          <input type="text" class="form-control" disabled="disabled" ng-model='book.name'/>
+        </div>
+        <div class="form-group">
+          <label> 描述</label>
+          <input type="text" class="form-control" ng-model='book.bookdesc'/>
+        <div class="form-group">
+          <label> 当前页码</label>
+          <input type="number" class="form-control" ng-model='book.pagenum' required/>
+        </div>
+      </ng-form>
+    </div>
+  </div>
+</div>
+</script>
+<!--书籍newmark end-->
+
+<!--新建书籍 end-->
+<script type="text/ng-template" id="addmarkView">
+<div class="navbar navbar-inverse navbar-fixed-top mk-menu-f" role="navigation">
+  <div class="container">
+    <div class="row mk-t-fun">
+      <div class="col-xs-6 mk-cancle">
+        <span class="glyphicon glyphicon-remove"></span>
+        <span>取消</span>
+      </div>
+      <div class="col-xs-6">
+        <span class="glyphicon glyphicon-send"></span>
+        <button class="mk-addmark" ng-click="addMark()" ng-disabled='!addmark.$valid'>添加</button>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="container mark-container">
+  <div class="row">
+    <div class="col-md-12">
+      <ng-form class="form mk-add-form" role="form" name="addmark">
+        <div class="form-group">
+          <label> 书名</label>
+          <input type="text" class="form-control" ngbk-focus ng-model='form.name' required focus fetch-bookface/>
+        </div>
+        <div class="form-group">
+          <label> 封面</label>
+          <input type="text" class="form-control" ng-model='form.bookface' required value="[[form.bookface]]"/>
+          <div class="mk-[[hasdata]]-contain">
+            <ul class="list-group mk-bf-wrap">
+              <li class="list-group-item" ng-repeat="bookface in bookfaces" choose-bookface>
+                <img src="[[bookface.bookface]]" alt="[[bookface.name]]" width="60px"/>
+                <div class="book-desc pull-right" style="width:200px;"> [[bookface.name]]</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="form-group">
+          <label> 描述</label>
+          <input type="text" class="form-control" ng-model='form.bookdesc'/>
+        </div>
+        <div class="form-group">
+          <label>当前页码</label>
+          <input type="number" class="form-control" ng-model='form.pagenum' required/>
+        </div>
+      </ng-form>
+    </div>
+  </div>
+</div>
+</script>
+<!--新建书籍 end-->

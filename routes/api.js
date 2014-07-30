@@ -19,7 +19,7 @@ var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000
  */
 var real_mongodbUri = 'mongodb://guwu:1223@ds061238.mongolab.com:61238/mark';
 var test_mongodbUri = 'mongodb://localhost/mark';
-var mongooseUri = uriUtil.formatMongoose(real_mongodbUri);
+var mongooseUri = uriUtil.formatMongoose(test_mongodbUri);
 mongoose.connect(mongooseUri, options);
 var db=mongoose.connection;
 db.on('error',function(){
