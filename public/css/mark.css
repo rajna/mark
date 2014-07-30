@@ -48,6 +48,10 @@ body{background-color: #f5f5f5;}
     75%  { -webkit-transform: rotate(-720deg) scale(0.8); transform: rotate(-720deg) scale(0.8); }
     100% { -webkit-transform: rotate(-360deg); transform: rotate(-0deg); }
 }
+.mk-view-animate{
+	-webkit-transition: all 0.5s;
+	transition: all 0.5s;
+}
 .loading-hide{display:none;}
 .navbar-fixed-top{height:56px;background-color: rgba(233,30,99, 0.9);border-width:0 0 0 0;}
 .mark-logo{
@@ -278,4 +282,192 @@ margin-bottom: 6px;
 }
 .mk-true-click{
 	background-color:#e5e5e5;
+}
+
+
+
+/* partial containers */
+.page-container {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    transform: translate3d(0,0,0);
+}
+
+.page-view {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    -webkit-backface-visibility: hidden;
+    perspective: 1000;
+    color: #FFFFFF;
+}
+
+.pages {
+    height: inherit;
+    padding: 2rem;
+}
+
+#page1 {
+    background-color: #0AC2D2;
+}
+
+#page2 {
+    background-color: #60D7A9;
+}
+
+#page3 {
+    background-color: #FDC162;
+}
+
+#page4 {
+    background-color: #FD6A62;
+}
+
+
+/* Transitions */
+
+/* Default Enter/Leave */
+.ng-enter,
+.ng-leave {
+    transition-timing-function: ease;
+    transition-duration: 250ms;
+    transition-property: opacity;
+}
+
+.ng-enter {
+    opacity: 0;
+}
+
+.ng-enter.ng-enter-active {
+    opacity: 1;
+}
+
+.ng-leave {
+    opacity: 1;
+}
+
+.ng-leave.ng-leave-active {
+    opacity: 0;
+}
+
+/* crossFade */
+.crossFade.ng-enter {
+    transition-duration: 100ms;
+    opacity: 0;
+}
+
+.crossFade.ng-enter.ng-enter-active {
+    opacity: 1;
+}
+
+.crossFade.ng-leave {
+    transition-duration: 100ms;
+    opacity: 1;
+}
+
+.crossFade.ng-leave.ng-leave-active {
+    opacity: 0;
+}
+
+/* slideRight */
+.slideRight {
+    opacity: 1 !important;
+}
+
+.slideRight.ng-enter {
+    transition-property: none;
+    transform: translate3d(-100%,0,0);
+}
+
+.slideRight.ng-enter.ng-enter-active {
+    transition-property: all;
+    transform: translate3d(0,0,0);
+}
+
+.slideRight.ng-leave {
+    transition-property: all;
+    transform: translate3d(0,0,0);
+}
+
+.slideRight.ng-leave.ng-leave-active {
+    transition-property: all;
+    transform: translate3d(100%,0,0);
+}
+
+/* slideLeft */
+.slideLeft {
+    opacity: 1 !important;
+}
+
+.slideLeft.ng-enter {
+    transition-property: none;
+    transform: translate3d(100%,0,0);
+}
+
+.slideLeft.ng-enter.ng-enter-active {
+    transition-property: all;
+    transform: translate3d(0,0,0);
+}
+
+.slideLeft.ng-leave {
+    transition-property: all;
+    transform: translate3d(0,0,0);
+}
+
+.slideLeft.ng-leave.ng-leave-active {
+    transition-property: all;
+    transform: translate3d(-100%,0,0);
+}
+
+/* slideDown */
+.slideDown {
+
+}
+
+.slideDown.ng-enter {
+    transition-property: none;
+    transform: translate3d(0,-100%,0);
+}
+
+.slideDown.ng-enter.ng-enter-active {
+    transition-property: all;
+    transform: translate3d(0,0,0);
+}
+
+.slideDown.ng-leave {
+    transition-property: all;
+    transform: translate3d(0,0,0);
+}
+
+.slideDown.ng-leave.ng-leave-active {
+    transition-property: all;
+    transform: translate3d(0,100%,0);
+}
+
+/* slideUp */
+.slideUp {
+    opacity: 1 !important;
+}
+
+.slideUp.ng-enter {
+    transition-property: none;
+    transform: translate3d(0,100%,0);
+}
+
+.slideUp.ng-enter.ng-enter-active {
+    transition-property: all;
+    transform: translate3d(0,0,0);
+}
+
+.slideUp.ng-leave {
+    transition-property: all;
+    transform: translate3d(0,0,0);
+}
+
+.slideUp.ng-leave.ng-leave-active {
+    transition-property: all;
+    transform: translate3d(0,-100%,0);
 }

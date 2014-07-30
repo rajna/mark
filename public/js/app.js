@@ -5,11 +5,39 @@ angular.module('myApp', [
   'myApp.controllers',
   'myApp.filters',
   'myApp.services',
-  'myApp.directives'
-],function ($interpolateProvider) {
+  'myApp.directives',
+  'ngAnimate'
+], function ($interpolateProvider) {
         $interpolateProvider.startSymbol('[[');
         $interpolateProvider.endSymbol(']]');
     }).
+run(['$rootScope', '$location', '$window', function ($rootScope, $location, $window) {
+
+    'use strict';
+    /**
+     * Helper method for main page transitions. Useful for specifying a new page partial and an arbitrary transition.
+     * @param  {String} path               The root-relative url for the new route
+     * @param  {String} pageAnimationClass A classname defining the desired page transition
+     */
+    $rootScope.go = function (path, pageAnimationClass) {
+
+        if (typeof(pageAnimationClass) === 'undefined') { // Use a default, your choice
+            $rootScope.pageAnimationClass = 'crossFade';
+        }
+        
+        else { // Use the specified animation
+            $rootScope.pageAnimationClass = pageAnimationClass;
+        }
+
+        if (path === 'back') { // Allow a 'back' keyword to go to previous page
+            $window.history.back();
+        }
+        
+        else { // Go to the specified path
+            $location.path(path);
+        }
+    };
+}]).
 config(function ($routeProvider, $locationProvider,$httpProvider) {
   $routeProvider.
     when('/login', {
@@ -41,4 +69,6 @@ config(function ($routeProvider, $locationProvider,$httpProvider) {
     });
 
   $locationProvider.html5Mode(true);
+
+
 });
