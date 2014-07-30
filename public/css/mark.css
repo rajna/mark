@@ -1,18 +1,21 @@
 body{background-color: #f5f5f5;}
 #mk-loading{
 	padding-top: 96px;
-
+    height:100%;
+    width:100%;
+    background-color: #e91e63;
+    position: absolute;
 }
 #mk-loading .login-logo{
-	border-color:#e91e63 transparent #e91e63 transparent;
-	color:#e91e63;
-	 -webkit-animation: mk-loading 3s infinite alternate;
-    animation: mk-loading 3s infinite alternate;
+	border-color:#fff transparent #fff transparent;
+	color:#fff;
+	 -webkit-animation: mk-loading 6s infinite alternate;
+    animation: mk-loading 6s infinite alternate;
 }
 
 #mk-loading .login-logo span{
-	 -webkit-animation: mk-loading-span 6s infinite alternate;
-    animation: mk-loading-span 6s infinite alternate;
+	 -webkit-animation: mk-loading-span 12s infinite alternate;
+    animation: mk-loading-span 12s infinite alternate;
 }
 
 @-webkit-keyframes mk-loading {
@@ -32,18 +35,18 @@ body{background-color: #f5f5f5;}
 }
 @-webkit-keyframes mk-loading-span {
     0% { }
-    25%  { -webkit-transform: rotate(-540deg); }
+    25%  { -webkit-transform: rotate(-540deg) scale(0.8); }
     50%  { -webkit-transform: rotate( -180deg); }
-    75%  { -webkit-transform: rotate(-720deg); }
+    75%  { -webkit-transform: rotate(-720deg) scale(0.8); }
     100% { -webkit-transform: rotate(-360deg); }
 }
 
 @keyframes mk-loading-span {
     0% { }
-    25%  { -webkit-transform: rotate(-540deg); transform: rotate(-540deg); }
+    25%  { -webkit-transform: rotate(-540deg) scale(0.8); transform: rotate(-540deg) scale(0.8); }
     50%  { -webkit-transform: rotate(-180deg); transform: rotate(-180deg); }
-    75%  { -webkit-transform: rotate(-720deg); transform: rotate(-720deg); }
-    100% { -webkit-transform: rotate(-360deg); transform: rotate(-360deg); }
+    75%  { -webkit-transform: rotate(-720deg) scale(0.8); transform: rotate(-720deg) scale(0.8); }
+    100% { -webkit-transform: rotate(-360deg); transform: rotate(-0deg); }
 }
 .loading-hide{display:none;}
 .navbar-fixed-top{height:56px;background-color: rgba(233,30,99, 0.9);border-width:0 0 0 0;}
