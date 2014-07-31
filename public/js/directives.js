@@ -103,6 +103,18 @@ angular.module('myApp.directives', []).
                 }
                 
               });
+            }else{
+              elm.bind('click', function(evt) {
+                evt.preventDefault();
+                scope.openMenu=!scope.openMenu;
+                
+                  if(scope.openMenu){
+                    scope.title="PROFILE";
+                  }else{
+                    scope.title="MARK";
+                  }
+                  scope.$apply();
+              });
             }
             
         }
