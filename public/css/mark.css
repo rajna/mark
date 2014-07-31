@@ -195,8 +195,8 @@ font-size:10px;
 		position: fixed;
 		top: 0px;
 		bottom: 0;
-		left: -340px;
-		width: 340px;
+		left: -240px;
+		width: 240px;
 		overflow:hidden;
 		background-color: #eeeeee;
 		z-index:2000;
@@ -207,12 +207,11 @@ font-size:10px;
 		box-shadow: 1px 0px 2px 0 rgba(0, 0, 0, 0.3);
 }
 .mk-menu{
-	border-bottom: 1px solid #d1d1d1;
 		text-align: left;font-size:16px;
 		padding:0 0 0 0;
 		color:#000;
 }
-.mk-menu li{list-style: none;padding: 6px 0 6px 12px;background-color: #fff;}
+.mk-menu li{list-style: none;padding: 6px 0 6px 12px;}
 /* styles for opening menu */
 
 .mk-menu-wrapper.mk-open-true{
@@ -221,11 +220,14 @@ font-size:10px;
 
 .mk-menu .mk-m-user{
 	background-color:#eeeeee;
+	border-bottom:1px solid rgba(0,0,0,0.2);
+	padding-bottom: 12px;
 }
+.mk-u-face{margin:12px 0px 12px 0px;height:36px;text-align:center;width:36px;overflow:hidden;display:inline-block;border-radius: 50%;}
+.mk-u-face img{width:100%;}
 .mk-m-user p{margin:0 0 0 0px;color:#5d5d5d;font-size:12px;}
 .mk-m-user p:first-child{color:#a4a4a4;font-weight:bold;}
-.mk-menu .mk-m-logout{border-top: 1px solid #d1d1d1;background-color:#e3e4dc;}
-.mk-m-logout a{color:#5d5d5d;font-size:12px;cursor:pointer;}
+.mk-m-logout a{color:#5d5d5d;cursor:pointer;}
 
 
 /*添加书籍*/
@@ -276,4 +278,12 @@ margin-bottom: 6px;
 }
 
 
+@media (min-width: 768px){
+	.navbar-fixed-top {
+		height: 128px;
+		}
+	.mark-container{
+		margin-top: 137px;
+	}
+}
 

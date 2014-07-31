@@ -67,28 +67,24 @@ angular.module('myApp.directives', []).
             if(mobilecheck()){
               var startX = 0;
               elm.bind('touchstart', function(evt) {
-                evt.preventDefault();
                 var touch = evt.touches[0]; //获取第一个触点
                 var x = Number(touch.pageX); //页面触点X坐标
                 //记录触点初始位置
                 startX = x;
               });
               elm.bind('touchmove', function(evt) {
-                evt.preventDefault();
                 var touch = evt.touches[0]; //获取第一个触点
                 var x = Number(touch.pageX); //页面触点X坐标
                 var movex=x-startX;
-                console.log(movex);
                 if(movex<0){
                   elm.css('left',movex+'px');
                 }
               });
               elm.bind('touchend', function(evt) {
-                evt.preventDefault();
                 
                 var left=parseInt(elm.css('left').split("px")[0]); 
                 console.log("left"+left);
-                if(left+170<0){
+                if(left+120<0){
                    scope.openMenu=!scope.openMenu;
                 
                   if(scope.openMenu){
