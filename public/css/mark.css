@@ -77,7 +77,7 @@ h3.login-logo{
 	font-size:24px;
 	margin:0 auto 0 auto;
 }
-.login-intro{width:90px;margin:12px auto 0 auto;color:rgba(255,255,255,0.8);text-align:center;}
+.login-intro{margin:12px auto 0 auto;color:rgba(255,255,255,0.8);text-align:center;}
 .login-intro a{color:#fff;margin:0 0 0 3px;cursor:pointer;border-bottom:1px dashed #fff;}
 .login-intro a:hover{text-decoration:none;border-bottom:1px solid #fff;}
 .login-form{margin:24px auto 0;padding:0 48px;}
@@ -96,16 +96,7 @@ border:1px solid #f06292;
 color:#fff;
 cursor:pointer;
 }
-.creat-account{
-	position:absolute;
-	bottom:0px;
-	left:0px;
-	background-color:#fff;
-	padding:12px;
-	width:100%;
-	text-align:center;
-}
-.creat-account a{color:#e91e63;}
+.login-intro .creat-account{border-bottom: none;margin-left: 3px;}
 .navbar-header{
 	float:left;
 }
@@ -192,14 +183,13 @@ font-size:10px;
 
 /*左侧导航*/
 .mk-menu-wrapper {
-		position: fixed;
+		position: absolute;
 		top: 56px;
-		bottom: 0;
 		left: 0;
 		width: 60px;
 		overflow:hidden;
 		background-color: #eeeeee;
-		z-index:1;
+		z-index:1000;
 		-webkit-transform: translateX(-60px);
 		-moz-transform: translateX(-60px);
 		transform: translateX(-60px);

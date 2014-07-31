@@ -41,7 +41,7 @@ angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
         });
     };
   }).
-  controller('BooksController', function($scope, $http, $location,$cookieStore,$q,Book) {
+  controller('BooksController', function($scope, $http,$rootScope, $location,$cookieStore,$q,Book) {
      if(!$cookieStore.get('user')){
       $location.path('/login');
      }
@@ -54,11 +54,11 @@ angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
       $scope.form.user=$cookieStore.get('user').name;
 	    $http.post('/books',$scope.form).
 	      success(function(data) {
-	        $location.path('/mark');
+          $rootScope.go('/mark', 'slideLeft')
 	      });
 	  };
     $scope.addNewmark= function (book) {
-       $location.path('/books/'+book.id);
+       $rootScope.go('/books/'+book.id, 'slideLeft')
     };
     $scope.logout= function () {
       $cookieStore.remove('user');

@@ -32,11 +32,10 @@
 
    <!--登陆界面-->
    <script type="text/ng-template" id="loginView">
-    <div style="width:100%;position:relative">
     <div class="login-content" ng-controller="loginController">
       <h3 class="login-logo">[[logo]]</h3>
       <div class="login-intro">
-        记录读过的书
+        记录读过的书<a href="/register" class="creat-account">注册</a>
       </div>
 
         <ng-form role="form" class="login-form" name="loginform">
@@ -53,10 +52,6 @@
         </ng-form>
 
       </div>
-      <div class="creat-account">
-              <a href="/register">创建账号</a>
-            </div>
-  </div>
   </div>
 </script>
 
@@ -106,9 +101,7 @@
     </div>
   </div>
 </div>
-
-<div class="container mark-container">
-  <nav class="mk-menu-wrapper mk-open-[[openMenu]]">
+<nav class="mk-menu-wrapper mk-open-[[openMenu]]">
     <ul class="mk-menu">
       <li class="mk-m-user"> 
         <p> [[user.name]]</p>
@@ -121,6 +114,8 @@
       </li>
     </ul>
   </nav>
+<div class="container mark-container clearfix">
+  
   <div>
     <div class="mark-action row">
       <div class="col-xs-6">
