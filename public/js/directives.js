@@ -73,6 +73,7 @@ angular.module('myApp.directives', []).
                 startX = x;
               });
               elm.bind('touchmove', function(evt) {
+                evt.preventDefault();
                 var touch = evt.touches[0]; //获取第一个触点
                 var x = Number(touch.pageX); //页面触点X坐标
                 var movex=x-startX;
@@ -83,7 +84,6 @@ angular.module('myApp.directives', []).
               elm.bind('touchend', function(evt) {
                 
                 var left=parseInt(elm.css('left').split("px")[0]); 
-                console.log("left"+left);
                 if(left+120<0){
                    scope.openMenu=!scope.openMenu;
                 
