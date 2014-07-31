@@ -195,17 +195,15 @@ font-size:10px;
 		position: fixed;
 		top: 0px;
 		bottom: 0;
-		left: 0;
-		width: 60px;
+		left: -340px;
+		width: 340px;
 		overflow:hidden;
 		background-color: #eeeeee;
 		z-index:2000;
-		-webkit-transform: translateX(-60px);
-		-moz-transform: translateX(-60px);
-		transform: translateX(-60px);
-		-webkit-transition: -webkit-transform 0.3s, width 0.3s;
-		-moz-transition: -moz-transform 0.3s, width 0.3s;
-		transition: transform 0.3s, width 0.3s;
+		
+		-webkit-transition: all 0.3s;
+		-moz-transition: all 0.3s,;
+		transition: all 0.3s;
 		box-shadow: 1px 0px 2px 0 rgba(0, 0, 0, 0.3);
 }
 .mk-menu{
@@ -218,13 +216,9 @@ font-size:10px;
 /* styles for opening menu */
 
 .mk-menu-wrapper.mk-open-true{
-		-webkit-transform: translateX(0px);
-		-moz-transform: translateX(0px);
-		transform: translateX(0px);
+		left: 0px;
 }
-.mk-menu-wrapper.mk-open-true {
-		width: 340px;
-}
+
 .mk-menu .mk-m-user{
 	background-color:#eeeeee;
 }
