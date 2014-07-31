@@ -81,22 +81,27 @@ angular.module('myApp.directives', []).
                 console.log(movex);
                 if(movex<0){
                   elm.css('left',movex+'px');
-                }else{
-                  scope.openMenu=!scope.openMenu;
-                  scope.$apply();
                 }
               });
               elm.bind('touchend', function(evt) {
                 evt.preventDefault();
-                scope.openMenu=!scope.openMenu;
                 
-                if(scope.openMenu){
-                  scope.title="PROFILE";
+                var left=parseInt(elm.css('left').split("px")[0]); 
+                console.log("left"+left);
+                if(left+170<0){
+                   scope.openMenu=!scope.openMenu;
+                
+                  if(scope.openMenu){
+                    scope.title="PROFILE";
+                  }else{
+                    scope.title="MARK";
+                  }
+                  scope.$apply();
+                  elm.attr('style','none');
                 }else{
-                  scope.title="MARK";
+                  elm.attr('style','0px');
                 }
-                scope.$apply();
-                elm.attr('style','none');
+                
               });
             }
             
