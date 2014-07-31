@@ -232,7 +232,7 @@ font-size:10px;
 
 /*添加书籍*/
 .mk-t-fun .col-xs-6{
-	text-align:center;
+	text-align:right;
 }
 .mk-t-fun span{
 display:inline-block;
@@ -243,7 +243,7 @@ font-size: 18px;
 margin: 5px 0 0 5px;
 cursor: pointer;
 }
-.mk-cancle{border-right:1px solid #e3e5d8;}
+.mk-t-fun .mk-cancle{text-align:left;}
 .mk-menu-f{background-color: rgba(233,30,99, 1);;border-bottom:1px solid #a3a3a3;}
 .mk-addmark{border:none;background:none;color: #5d5d5d;font-size: 18px;}
 
