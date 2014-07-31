@@ -42,6 +42,8 @@ angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
     };
   }).
   controller('BooksController', function($scope, $http,$rootScope, $location,$cookieStore,$q,Book) {
+     
+
      if(!$cookieStore.get('user')){
       $location.path('/login');
      }
@@ -73,6 +75,7 @@ angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
         $scope.title="MARK";
       }
     };
+    
     $scope.remove=function(index,book){
       book.$remove(function(data){
        $scope.books.splice(index, 1);

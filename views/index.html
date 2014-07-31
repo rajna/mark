@@ -88,6 +88,19 @@
 
 <!--书籍mark列表start-->
 <script type="text/ng-template" id="marklistView">
+<nav class="mk-menu-wrapper mk-open-[[openMenu]]" touch-Nav>
+    <ul class="mk-menu">
+      <li class="mk-m-user"> 
+        <p> [[user.name]]</p>
+        <p> [[user.email]]</p>
+      </li>
+      <li>
+        <span class="glyphicon glyphicon-bell"> 提醒</span></li>
+      <li class="mk-m-logout">
+        <a ng-click="logout()"> 退出</a>
+      </li>
+    </ul>
+  </nav>
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -102,19 +115,7 @@
 </div>
 
 <div class="container mark-container">
-  <nav class="mk-menu-wrapper mk-open-[[openMenu]]">
-    <ul class="mk-menu">
-      <li class="mk-m-user"> 
-        <p> [[user.name]]</p>
-        <p> [[user.email]]</p>
-      </li>
-      <li>
-        <span class="glyphicon glyphicon-bell"> 提醒</span></li>
-      <li class="mk-m-logout">
-        <a ng-click="logout()"> 退出</a>
-      </li>
-    </ul>
-  </nav>
+  
   <div>
     <div class="mark-action row">
       <div class="col-xs-6">
