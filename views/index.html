@@ -6,6 +6,7 @@
     <meta name='viewport' content='width=device-width,initial-scale=1'>
    <title>MARK</title>
     <link rel='stylesheet' href='/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='/css/font-awesome.min.css'>
     <link rel='stylesheet' href='/css/mark.css'>
   </head>
   <body>
@@ -31,6 +32,7 @@
    <!--登陆界面-->
    <script type="text/ng-template" id="loginView">
     <div class="login-content mk-view-animate" ng-controller="loginController">
+      <div class="mk-login-inner">
       <h3 class="login-logo">[[logo]]</h3>
       <div class="login-intro">
         记录读过的书
@@ -50,6 +52,7 @@
               <a href="/register">创建账号</a>
             </div>
         </ng-form>
+      </div>
       </div>
   </div>
 </script>
@@ -91,18 +94,18 @@
 <nav class="mk-menu-wrapper mk-open-[[openMenu]]" touch-Nav>
     <ul class="mk-menu">
       <li class="mk-m-user"> 
-        <div><a class="mk-u-face"><img src="./img/person.jpg"></a><p> [[user.name]]</p></div>
+        <div><a class="mk-u-face"><img src="./img/person.jpg"></a></div>
         <p> [[user.email]]</p>
       </li>
       <li>
-        <span class="glyphicon glyphicon-bell"> </span>提醒</li>
+        <i class="fa fa-bell"></i><a>提醒</a></li>
       <li class="mk-m-logout">
-        <a ng-click="logout()"> 退出</a>
+        <i class="fa fa-power-off"></i><a ng-click="logout()"> 退出</a>
       </li>
     </ul>
   </nav>
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-  <div class="container">
+  <div class="container mk-list-wrap">
     <div class="navbar-header">
       <h3 class="mark-logo" ng-click="openNav()">[[title]]</h3>
     </div>
@@ -151,12 +154,12 @@
           </div>
           <div class="row book-desc">[[book.bookdesc]]</div>
           <div class="row book-act">
-            <div class="col-xs-9">
+            <div class="col-xs-8">
               <span class="glyphicon glyphicon-heart-empty"></span>
               <span class="glyphicon glyphicon-comment"></span>
               <span class="glyphicon glyphicon-share"></span>
             </div>
-            <div class="col-xs-3">
+            <div class="col-xs-4">
               <span class="glyphicon glyphicon-bookmark pull-right" ng-click="addNewmark(book)"></span>
               <span class="glyphicon glyphicon-remove pull-right" ng-click="remove($index,book)"></span>
             </div>

@@ -51,6 +51,8 @@ body{background-color: #f5f5f5;}
 
 .loading-hide{display:none;}
 .navbar-fixed-top{height:56px;background-color: rgba(233,30,99, 0.9);border-width:0 0 0 0;}
+.mk-list-wrap{padding-left: 16px;padding-right: 16px;}
+
 .mark-logo{
 	border: 3px solid #333;
 	border-color:#fff transparent #fff transparent;
@@ -61,10 +63,11 @@ body{background-color: #f5f5f5;}
 	text-align:center;
 	line-height: 36px;
 	font-size:12px;
-	margin:5px 0 0 5px;
+	margin:5px 0 0 16px;
 	cursor:pointer;
 }
 .login-content{background-color:#e91e63;padding:24px 24px 244px 24px;}
+.mk-login-inner{margin:0 auto;max-width:350px;}
 h3.login-logo{
     border: 6px solid #333;
 	border-color:#fff transparent #fff transparent;
@@ -122,11 +125,12 @@ color:#fff;
 }
 
 
-.mark-container{margin-top:65px;padding-left: 9px;padding-right:9px;}
+.mark-container{margin-top:65px;padding-left: 16px;padding-right:16px;}
 .mark-container ul.booklist img.media-object {
 max-width: 48px;
 width: 48px;
 margin: 0 12px;
+border-radius:3px;
 }
 .mark-container ul.booklist li{
 	border-bottom:1px solid #ccc;
@@ -136,8 +140,8 @@ margin: 0 12px;
 	padding:16px 12px 16px 12px;
 	position:relative;
 }
-.mark-title{font-size:12px;color:#5d5d5d;margin:14px 0 4px 0;}
-.mark-info{font-size:12px;color:#a4a4a4;font-weight:normal;margin-top:0px;}
+.mark-title{font-size:14px;font-weight:bold;color:rgba(0,0,0,1);margin:14px 0 4px 0;}
+.mark-info{font-size:12px;color:rgba(0,0,0,0.8);font-weight:normal;margin-top:0px;}
 .mark-pagenumber{
 	margin:12px 4px 0 0px;
 	color:#5d5d5d;
@@ -166,7 +170,7 @@ margin: 0 12px;
 border:1px solid #eeeeee;
 color:#7d7d7d;
 border-radius:3px;
-padding:3px 6px;
+padding:5px 8px;
 cursor:pointer;
 margin-right:4px;
 font-size:10px;
@@ -195,8 +199,8 @@ font-size:10px;
 		position: fixed;
 		top: 0px;
 		bottom: 0;
-		left: -240px;
-		width: 240px;
+		left: -302px;
+		width: 302px;
 		overflow:hidden;
 		background-color: #eeeeee;
 		z-index:2000;
@@ -211,7 +215,7 @@ font-size:10px;
 		padding:0 0 0 0;
 		color:#000;
 }
-.mk-menu li{list-style: none;padding: 6px 0 6px 12px;}
+.mk-menu li{list-style: none;padding: 6px 16px 6px 16px;height:48px;line-height:48px;}
 /* styles for opening menu */
 
 .mk-menu-wrapper.mk-open-true{
@@ -221,14 +225,18 @@ font-size:10px;
 .mk-menu .mk-m-user{
 	background-color:#eeeeee;
 	border-bottom:1px solid rgba(0,0,0,0.2);
-	padding-bottom: 12px;
+	padding-bottom: 8px;
+	padding-top:16px;
+	height:172px;
+	position:relative;
 }
-.mk-u-face{margin:12px 0px 12px 0px;height:36px;text-align:center;width:36px;overflow:hidden;display:inline-block;border-radius: 50%;}
-.mk-u-face img{width:100%;}
-.mk-m-user p{margin:0 0 0 0px;color:#5d5d5d;font-size:12px;}
-.mk-m-user p:first-child{color:#a4a4a4;font-weight:bold;}
-.mk-m-logout a{color:#5d5d5d;cursor:pointer;}
 
+.mk-m-user p{margin:0 0 0 0px;position:absolute;bottom:0px;height:48px;line-height:36px;color:#5d5d5d;font-size:14px;}
+.mk-m-user p:first-child{color:#a4a4a4;font-weight:bold;}
+.mk-menu li i{font-size:22px;color:#4C4C4C;}
+.mk-menu li a{color:#5d5d5d;font-size:14px;cursor:pointer;padding-left: 32px;display:inline-block;height:36px;line-height:24px;}
+.mk-menu li a.mk-u-face{padding:0;height:64px;text-align:center;width:64px;overflow:hidden;display:inline-block;border-radius: 50%;}
+.mk-u-face img{width:100%;}
 
 /*添加书籍*/
 .mk-t-fun .col-xs-6{
