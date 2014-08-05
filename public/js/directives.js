@@ -84,8 +84,7 @@ angular.module('myApp.directives', []).
               elm.bind('touchend', function(evt) {
                 
                 var left=parseInt(elm.css('left').split("px")[0]); 
-                var slidewidth=302;
-                if(left+slidewidth<0){
+                if(left+302<0){
                    scope.openMenu=!scope.openMenu;
                 
                   if(scope.openMenu){
