@@ -223,7 +223,7 @@ font-size:10px;
 }
 
 .mk-menu .mk-m-user{
-	background-color:#eeeeee;
+	background-color:#607d8b;
 	border-bottom:1px solid rgba(0,0,0,0.2);
 	padding-bottom: 8px;
 	padding-top:16px;
@@ -231,7 +231,7 @@ font-size:10px;
 	position:relative;
 }
 
-.mk-m-user p{margin:0 0 0 0px;position:absolute;bottom:0px;height:48px;line-height:36px;color:#5d5d5d;font-size:14px;}
+.mk-m-user p{margin:0 0 0 0px;position:absolute;bottom:0px;height:48px;line-height:36px;color:#fff;font-size:14px;}
 .mk-m-user p:first-child{color:#a4a4a4;font-weight:bold;}
 .mk-menu li i{font-size:22px;color:#4C4C4C;}
 .mk-menu li a{color:#5d5d5d;font-size:14px;cursor:pointer;padding-left: 32px;display:inline-block;height:36px;line-height:24px;}
