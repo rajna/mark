@@ -265,9 +265,8 @@ min-height:72px;
 margin-bottom: 6px;
 }
 .mk-add-form .mk-bf-wrap{
-height:208px;	
-margin-top:16px;
-	margin-bottom:32px;
+height:208px;
+	margin-bottom:8px;
 }
 .mk-add-form .form-group input{
 	border:none;

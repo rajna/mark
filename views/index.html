@@ -248,7 +248,11 @@
   <div class="row">
     <div class="col-md-12">
       <ng-form class="form mk-add-form" role="form" name="addmark">
-      
+      <div class="form-group" style="margin-bottom:0px;">
+          <label style="color:#fff;"> 书名</label>
+          <input type="text" class="form-control" ngbk-focus ng-model='form.name' required focus fetch-bookface style="color:#fff;"/>
+        </div>
+
       <div class="form-group mk-bf-wrap">
           <input type="text" class="form-control" style="display:none;" ng-model='form.bookface' required value="[[form.bookface]]"/>
           <div class="mk-[[hasdata]]-contain">
@@ -261,11 +265,7 @@
           </div>
         </div>
       
-      <div class="form-group">
-          <label> 书名</label>
-          <input type="text" class="form-control" ngbk-focus ng-model='form.name' required focus fetch-bookface/>
-        </div>
-
+      
 
       <div class="form-group">
           <label>当前页码</label>
