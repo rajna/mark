@@ -125,7 +125,15 @@ color:#fff;
 }
 
 
-.mark-container{margin-top:65px;padding-left: 16px;padding-right:16px;}
+.mark-container{margin-top:56px;padding-left: 16px;padding-right:16px;}
+.mk-importantpanel{
+	height:240px;
+	width:100%;
+	background:rgba(233,30,99, 1);
+	position:absolute;
+	top:56px;
+	left:0px;
+}
 .mark-container ul.booklist img.media-object {
 max-width: 48px;
 width: 48px;
@@ -204,10 +212,6 @@ font-size:10px;
 		overflow:hidden;
 		background-color: #eeeeee;
 		z-index:2000;
-		
-		-webkit-transition: all 0.1s;
-		-moz-transition: all 0.1s,;
-		transition: all 0.1s;
 		box-shadow: 1px 0px 2px 0 rgba(0, 0, 0, 0.3);
 }
 .mk-menu{
@@ -233,8 +237,8 @@ font-size:10px;
 
 .mk-m-user p{margin:0 0 0 0px;position:absolute;bottom:0px;height:48px;line-height:36px;color:#fff;font-size:14px;}
 .mk-m-user p:first-child{color:#a4a4a4;font-weight:bold;}
-.mk-menu li i{font-size:22px;color:#4C4C4C;}
-.mk-menu li a{color:#5d5d5d;font-size:14px;cursor:pointer;padding-left: 32px;display:inline-block;height:36px;line-height:24px;}
+.mk-menu li i{font-size:18px;color:#4C4C4C;}
+.mk-menu li a{color:#5d5d5d;font-size:14px;cursor:pointer;padding-left: 24px;display:inline-block;height:36px;line-height:24px;}
 .mk-menu li a.mk-u-face{padding:0;height:64px;text-align:center;width:64px;overflow:hidden;display:inline-block;border-radius: 50%;}
 .mk-u-face img{width:100%;}
 
@@ -248,31 +252,47 @@ color: #fff;
 text-align: center;
 line-height: 48px;
 font-size: 18px;
-margin: 5px 0 0 5px;
+margin: 5px 0 0 1px;
 cursor: pointer;
 }
 .mk-t-fun .mk-cancle{text-align:left;}
-.mk-menu-f{background-color: rgba(233,30,99, 1);;border-bottom:1px solid #a3a3a3;}
+.mk-menu-f{background-color: rgba(233,30,99, 1);}
 .mk-addmark{border:none;background:none;color: #5d5d5d;font-size: 18px;}
 
 .mk-add-form .form-group{
-border-radius: 2px;
-box-shadow: 0 0px 1px 0 rgba(0, 0, 0, 0.1);
-background: #fff;
-padding: 16px 12px 16px 12px;
+padding: 0px 32px 0px 72px;
+min-height:72px;
 margin-bottom: 6px;
+}
+.mk-add-form .mk-bf-wrap{
+height:208px;	
+margin-top:16px;
+	margin-bottom:32px;
 }
 .mk-add-form .form-group input{
 	border:none;
 	box-shadow: none;
 	border-radius: 0px;
-	border-bottom:1px dashed #ccc;
+	border-bottom:1px solid #bdbdbd;
+	background-color: transparent;
+
 }
-.mk-add-form .form-group label{color:#a3a3a3;font-weight: normal;}
+
+.mk-add-form .form-group label{color:#bdbdbd;font-weight: normal;}
+.mk-reg-form .form-group{
+	padding: 0px;
+}
+.mk-reg-form div{padding: 0px 0px 0px 56px;}
+.mk-reg-form i{
+	color:#bdbdbd;
+	font-size: 18px;
+	padding-top: 8px;
+}
+.mk-newm-bf img{margin-left: 72px;}
+
 .mk-true-contain{
 	overflow:auto;
-	height:160px;
-	margin-top:16px;
+	height:158px;
 	border-bottom: 1px solid #ddd;
 	border-top: 1px solid #ddd;
 	border-radius: 5px;
@@ -287,11 +307,6 @@ margin-bottom: 6px;
 
 
 @media (min-width: 768px){
-	.navbar-fixed-top {
-		height: 128px;
-		}
-	.mark-container{
-		margin-top: 137px;
-	}
+	
 }
 

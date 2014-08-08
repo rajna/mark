@@ -61,29 +61,39 @@
 <script type="text/ng-template" id="registerView">
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
-    <div class="navbar-header top-fuc">
-      <span class="glyphicon glyphicon-remove" ng-click="toLogin()"></span>
-      <span class="r-title"> 注册账号</span>
+     <div class="row mk-t-fun">
+      <div class="col-xs-6 mk-cancle">
+        <i class="fa fa-arrow-left" ng-click="toLogin()"></i>
+      </div>
+      <div class="col-xs-6">
+        <button class="mk-addmark" ng-click="reg()" ng-disabled='!addaccount.$valid'><i class="fa fa-check"></i></button>
+      </div>
     </div>
-    <div class="pull-right top-fuc">
-      <span class="glyphicon glyphicon-ok"></span>
-    </div>
+
   </div>
 </div>
 
 <div class="container mark-container">
-  <ng-form role="form" class="register-form" name="addaccount">
-    <div class="form-group">
+  <ng-form role="form" class="register-form mk-add-form mk-reg-form" name="addaccount">
+    <div class="form-group" style="margin-top:16px;">
+      <i class="fa fa-user pull-left"></i>
+      <div>
       <input type="text" class="form-control" ngbk-focus placeholder="用户名" required ng-model='form.name'/>
       <p class="text-danger"> [[message]]</p>
+      </div>
     </div>
     <div class="form-group">
+    <i class="fa fa-envelope pull-left"></i>
+      <div>
       <input type="email" class="form-control" placeholder="邮箱" required ng-model='form.email'/>
+      </div>
     </div>
     <div class="form-group">
+    <i class="fa fa-lock pull-left"></i>
+    <div>
       <input type="password" class="form-control" placeholder="密码" required ng-model='form.password'/>
+      </div>
     </div>
-    <button ng-click="reg()" class="btn btn-default" ng-disabled='!addaccount.$valid'> 注册</button>
   </ng-form>
 </div>
 </script>
@@ -177,21 +187,21 @@
   <div class="container">
     <div class="row mk-t-fun">
       <div class="col-xs-6 mk-cancle">
-        <span class="glyphicon glyphicon-remove"></span>
-        <span>取消</span>
+        <i class="fa fa-arrow-left"></i>
       </div>
       <div class="col-xs-6">
-        <span class="glyphicon glyphicon-send"></span>
-        <button class="mk-addmark" ng-disabled='!booknewmark.$valid' ng-click="save()">添加</button>
+        <button class="mk-addmark" ng-disabled='!booknewmark.$valid' ng-click="save()"><i class="fa fa-check"></i></button>
       </div>
     </div>
   </div>
 </div>
 <div class="container mark-container">
+<div class="mk-importantpanel">
+  </div>
   <div class="row">
     <div class="col-md-12">
       <ng-form class="form mk-add-form" role="form" name="booknewmark">
-        <div style="text-align:center;background:rgba(0,0,0,0.3);padding:12px;margin:12px 0;">
+        <div class="mk-bf-wrap mk-newm-bf">
           <img ng-src="[[book.bookface]]"/>
           
           <input type="text" class="form-control" style="display:none" ng-model='book.bookface' disabled="disabled"/>
@@ -203,6 +213,7 @@
         <div class="form-group">
           <label> 描述</label>
           <input type="text" class="form-control" ng-model='book.bookdesc'/>
+        </div>
         <div class="form-group">
           <label> 当前页码</label>
           <input type="number" class="form-control" ng-model='book.pagenum' required/>
@@ -223,42 +234,51 @@
         <i class="fa fa-arrow-left"></i>
       </div>
       <div class="col-xs-6">
-        <span class="glyphicon glyphicon-send"></span>
-        <button class="mk-addmark" ng-click="addMark()" ng-disabled='!addmark.$valid'>添加</button>
+        <button class="mk-addmark" ng-click="addMark()" ng-disabled='!addmark.$valid'><i class="fa fa-check"></i></button>
       </div>
     </div>
   </div>
+  
 </div>
     
 
 <div class="container mark-container">
+<div class="mk-importantpanel">
+  </div>
   <div class="row">
     <div class="col-md-12">
       <ng-form class="form mk-add-form" role="form" name="addmark">
-        <div class="form-group">
-          <label> 书名</label>
-          <input type="text" class="form-control" ngbk-focus ng-model='form.name' required focus fetch-bookface/>
-        </div>
-        <div class="form-group">
-          <label> 封面</label>
-          <input type="text" class="form-control" ng-model='form.bookface' required value="[[form.bookface]]"/>
+      
+      <div class="form-group mk-bf-wrap">
+          <input type="text" class="form-control" style="display:none;" ng-model='form.bookface' required value="[[form.bookface]]"/>
           <div class="mk-[[hasdata]]-contain">
             <ul class="list-group mk-bf-wrap">
               <li class="list-group-item" ng-repeat="bookface in bookfaces" choose-bookface>
                 <img src="[[bookface.bookface]]" alt="[[bookface.name]]" width="60px"/>
-                <div class="book-desc pull-right" style="width:200px;"> [[bookface.name]]</div>
+                <div class="book-desc pull-right" style="width:160px;"> [[bookface.name]]</div>
               </li>
             </ul>
           </div>
         </div>
+      
+      <div class="form-group">
+          <label> 书名</label>
+          <input type="text" class="form-control" ngbk-focus ng-model='form.name' required focus fetch-bookface/>
+        </div>
+
+
+      <div class="form-group">
+          <label>当前页码</label>
+          <input type="number" class="form-control" ng-model='form.pagenum' required/>
+        </div>
+
+      
+        
         <div class="form-group">
           <label> 描述</label>
           <input type="text" class="form-control" ng-model='form.bookdesc'/>
         </div>
-        <div class="form-group">
-          <label>当前页码</label>
-          <input type="number" class="form-control" ng-model='form.pagenum' required/>
-        </div>
+        
       </ng-form>
     </div>
   </div>
