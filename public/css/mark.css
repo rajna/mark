@@ -268,6 +268,9 @@ margin-bottom: 6px;
 height:208px;
 	margin-bottom:8px;
 }
+.mk-add-form .mk-newm-bf{
+	margin-bottom:32px;
+}
 .mk-add-form .form-group input{
 	border:none;
 	box-shadow: none;
