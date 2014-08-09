@@ -76,10 +76,13 @@ app.post('/api/addMark', api.addMark);
 
 app.post('/api/reg', api.reg);
 
+//查用户列表
+app.get('/user/userlist', api.userlist);
+
 //登陆
 app.post('/api/login', api.login);
 
-//网络爬虫
+//网络爬虫,爬书籍信息
 app.post('/api/baike', api.baike);
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);

@@ -42,8 +42,7 @@ angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
     };
   }).
   controller('BooksController', function($scope, $http,$rootScope, $location,$cookieStore,$q,Book) {
-     
-
+    
      if(!$cookieStore.get('user')){
       $location.path('/login');
      }
@@ -52,6 +51,9 @@ angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
      $scope.form = {};
      $scope.title="MARK";
      $scope.clicked=false;
+   $scope.searchUsers= function () {
+      $location.path('/searchUsers');
+    };
 	 $scope.addMark= function () {
       $scope.form.user=$cookieStore.get('user').name;
 	    $http.post('/books',$scope.form).
@@ -60,7 +62,7 @@ angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
 	      });
 	  };
     $scope.addNewmark= function (book) {
-       $rootScope.go('/books/'+book.id, 'slideLeft')
+       $rootScope.go('/books/'+book.id, 'slideLeft');
     };
     $scope.logout= function () {
       $cookieStore.remove('user');
@@ -81,6 +83,15 @@ angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
        $scope.books.splice(index, 1);
        $scope.apply();
       });
+    }
+  }).
+  controller('searchUsersController',function($scope,$http,$location,$cookieStore,User){
+    if(!$cookieStore.get('user')){
+      $location.path('/');
+     }
+    $scope.users = User.query();
+    $scope.goMark=function(){
+      $location.path('/mark');
     }
   }).
   controller('BaikeController', function ($scope,$http,$location,$cookieStore) {

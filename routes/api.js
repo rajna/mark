@@ -113,7 +113,6 @@ exports.booklist = function (req, res) {
             bookface: book.bookface
           });
         });
-        console.log(query);
         res.json(books);
       });	
     };
@@ -202,3 +201,18 @@ exports.baike = function (req, res) {
      }
    });
 };
+
+//用户列表
+exports.userlist = function (req, res) {
+      User.find(function(error,data){
+        var users =[];
+        data.forEach(function (user, i) {
+          users.push({
+            id: user._id,
+            name: user.name,
+            imgUrl: user.imgUrl
+          });
+        });
+        res.json(users);
+      }); 
+    };

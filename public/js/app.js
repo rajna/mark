@@ -64,6 +64,10 @@ config(function ($routeProvider, $locationProvider,$httpProvider) {
       templateUrl: 'partials/baike',
       controller: 'BaikeController'
     }).
+    when('/searchUsers', {
+      template: document.getElementById('searchUsersView').text,
+      controller: 'searchUsersController'
+    }).
     otherwise({
       redirectTo: '/login'
     });
