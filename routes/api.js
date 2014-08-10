@@ -28,8 +28,8 @@ db.on('error',function(){
 });
 
 var UserSchema=require('../models/user.js').UserSchema;
-var User=db.model('users',UserSchema);
 var MarkSchema=require('../models/mark.js').MarkSchema;
+var User=db.model('users',UserSchema);
 var Mark=db.model('marks',MarkSchema);
 
 
@@ -102,7 +102,7 @@ exports.reg=function(req,res){
 //书籍列表API
 exports.booklist = function (req, res) {
       var query={user:req.params.user};
-      Mark.find(query,function(error,data){
+      /*Mark.find(query,function(error,data){
         var books =[];
         data.forEach(function (book, i) {
           books.push({
@@ -110,7 +110,25 @@ exports.booklist = function (req, res) {
             name: book.name,
             pagenum: book.pagenum,
             bookdesc: book.bookdesc,
-            bookface: book.bookface
+            bookface: book.bookface,
+            user:book.user,
+            date:book.date
+          });
+        });*/
+      var query=Mark.find({});
+      query.where('user',req.params.user);
+      query.sort({'_id':-1});
+      query.exec(function(error,data){
+        var books =[];
+        data.forEach(function (book, i) {
+          books.push({
+            id: book._id,
+            name: book.name,
+            pagenum: book.pagenum,
+            bookdesc: book.bookdesc,
+            bookface: book.bookface,
+            user:book.user,
+            date:book.date
           });
         });
         res.json(books);
@@ -136,12 +154,22 @@ exports.addMark = function (req, res) {
      msg:false
     });
   }
+  var date=new Date();//获取当前时间
+  var minute=date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes();
+  /*var time={
+     date: date, 
+      year : date.getFullYear(), 
+      month : date.getFullYear() + "-" + (date.getMonth()+1), 
+      day : date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate(), 
+      minute : date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() 
+  }*/
    var book=new Mark({
     user:req.body.user,
     name:req.body.name,
     bookface:req.body.bookface,
     pagenum:req.body.pagenum,
-    bookdesc:req.body.bookdesc
+    bookdesc:req.body.bookdesc,
+    date:date
    });
 
     book.save(function(err, doc){
@@ -210,9 +238,33 @@ exports.userlist = function (req, res) {
           users.push({
             id: user._id,
             name: user.name,
-            imgUrl: user.imgUrl
+            imgUrl: user.imgUrl,
+            follows:user.follows
           });
         });
         res.json(users);
       }); 
     };
+
+exports.folowUser = function (req, res) {
+  if(!req.body.user){
+    res.json({
+     msg:false
+    });
+  }
+    console.log(req.body.user);
+    console.log(req.body.follow);
+    User.update(
+      {email:req.body.user},
+      {$set:{follows:req.body.follow}},
+      function(err, doc){
+               if(err){
+                   res.json({
+                      msg:false
+                    });
+               }
+               res.json({
+                      msg:true
+                    });
+          })      
+};

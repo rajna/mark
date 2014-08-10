@@ -93,6 +93,18 @@ angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
     $scope.goMark=function(){
       $location.path('/mark');
     }
+    $scope.form={};
+    $scope.folowUser=function(user){
+
+      $scope.form.user=$cookieStore.get('user').email;
+      $scope.form.follow=user.id;
+      $http.post('/folowUser/',$scope.form).
+        success(function(data) {
+          if(data.success){
+            alert("ok");
+          }
+        });
+    }
   }).
   controller('BaikeController', function ($scope,$http,$location,$cookieStore) {
     if(!$cookieStore.get('user')){

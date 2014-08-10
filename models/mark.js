@@ -5,7 +5,7 @@ exports.MarkSchema=new mongoose.Schema({
           bookface: String,
           pagenum:String,
           bookdesc:String,
-          data:Date
+          date:Date
         });
 
 // var mongodb = require('./db');

@@ -78,6 +78,7 @@ app.post('/api/reg', api.reg);
 
 //查用户列表
 app.get('/user/userlist', api.userlist);
+app.post('/folowUser/', api.folowUser);
 
 //登陆
 app.post('/api/login', api.login);
