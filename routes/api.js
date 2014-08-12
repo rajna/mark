@@ -29,9 +29,10 @@ db.on('error',function(){
 
 var UserSchema=require('../models/user.js').UserSchema;
 var MarkSchema=require('../models/mark.js').MarkSchema;
+var FollowSchema=require('../models/follow.js').FollowSchema;
 var User=db.model('users',UserSchema);
 var Mark=db.model('marks',MarkSchema);
-
+var Follow=db.model('follows',FollowSchema);
 
 //用户登陆API
 exports.login=function(req,res){
@@ -254,10 +255,13 @@ exports.folowUser = function (req, res) {
   }
     console.log(req.body.user);
     console.log(req.body.follow);
-    User.update(
-      {email:req.body.user},
-      {$set:{follows:req.body.follow}},
-      function(err, doc){
+
+    var follow=new Follow({
+    email:req.body.user,
+    follow:req.body.follow
+   });
+
+    follow.save(function(err, doc){
                if(err){
                    res.json({
                       msg:false
@@ -266,5 +270,5 @@ exports.folowUser = function (req, res) {
                res.json({
                       msg:true
                     });
-          })      
+          });      
 };

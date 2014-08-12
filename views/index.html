@@ -138,19 +138,20 @@
     </ul>
     <ul  ng-switch-default class="media-list booklist">
       <li ng-repeat="book in books">
-          <div class="row">
-            <div class="col-xs-10">
-              <div class="row">
+          <div class="row mk-bl-wrap">
+            <div class="col-xs-10 mk-bl-l">
+              <div>
                 <a href="/books/[[book.id]]">
                   <img class="media-object pull-left" ng-src="[[book.bookface]]"/>
                 </a>
                 <div>
                   <h3 class="mark-title"> [[book.name]]</h3>
                   <h4 class="mark-info">来自: [[book.user]] [[book.date]] </h4>
+
                 </div>
               </div>
             </div>
-            <div class="col-xs-2">
+            <div class="col-xs-2 mk-bl-r">
               <p class="mark-pagenumber pull-right">
                 <span class="half-circle">[[book.pagenum]]</span>
               </p>
