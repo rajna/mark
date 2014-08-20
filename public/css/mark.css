@@ -189,6 +189,10 @@ margin-right:4px;
 font-size:10px;
 }
 
+.book-act .glyphicon:hover{
+	color:rgba(233,30,99, 1);
+}
+
 .mark-action{
 	-webkit-border-radius:50%;
 	-moz-border-radius:50%;
@@ -222,9 +226,14 @@ font-size:10px;
 .mark-action a{
 	display:block;height:24px;width:24px;margin:16px auto 0 auto;text-align:center;}
 .mark-action i{font-size:24px;color:#fff;}
-.mark-action a:hover{text-decoration: none;}
-.mark-action a:hover i{color:rgba(255,255,255,0.8);}
-*/
+.mark-action:hover{-webkit-box-shadow:none;
+	box-shadow:none;}
+.mark-action:hover a{
+	text-decoration: none;
+}
+.mark-action:hover a i{
+	color:rgba(255,255,255,0.6);
+}
 
 /*注册*/
 .r-title{color:#fff;line-height: 18px;font-size:18px;display:inline-block;height:18px;position:relative;top:-2px;left:3px;}

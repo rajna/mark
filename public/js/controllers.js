@@ -51,10 +51,13 @@ angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
      $scope.form = {};
      $scope.title="MARK";
      $scope.clicked=false;
-   $scope.searchUsers= function () {
+    $scope.openDuoKan= function () {
+      Android.showToast();
+    };
+    $scope.searchUsers= function () {
       $location.path('/searchUsers');
     };
-	 $scope.addMark= function () {
+	  $scope.addMark= function () {
       $scope.form.user=$cookieStore.get('user').name;
 	    $http.post('/books',$scope.form).
 	      success(function(data) {

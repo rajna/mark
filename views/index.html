@@ -8,6 +8,7 @@
     <link rel='stylesheet' href='/css/bootstrap.min.css'>
     <link rel='stylesheet' href='/css/font-awesome.min.css'>
     <link rel='stylesheet' href='/css/mark.css'>
+    <link href="/img/markweblogo.png" rel="shortcut icon" type="image/png">
   </head>
   <body>
     <div id="mk-loading" butterbar ><h3 class="login-logo"><span>MARK</span></h3></div>
@@ -133,9 +134,7 @@
           <i class="fa fa-plus"></i>
         </a>
     </div> 
-    <ul ng-switch-when="0" class="media-list booklist">
-    <li><h4 style="color:rgba(0,0,0,0.6);text-align:center;">欢迎使用MARK:添加第一本书的页码吧。</h4></li>
-    </ul>
+    
     <ul  ng-switch-default class="media-list booklist">
       <li ng-repeat="book in books">
           <div class="row mk-bl-wrap">
@@ -162,7 +161,7 @@
             <div class="col-xs-8">
               <span class="glyphicon glyphicon-heart-empty"></span>
               <span class="glyphicon glyphicon-comment"></span>
-              <span class="glyphicon glyphicon-share"></span>
+              <span class="glyphicon glyphicon-share" ng-click="openDuoKan()"></span>
             </div>
             <div class="col-xs-4">
               <span class="glyphicon glyphicon-bookmark pull-right" ng-click="addNewmark(book)"></span>
@@ -170,6 +169,10 @@
             </div>
           </div>
         </li>
+      </ul>
+      <ul ng-switch-when="0" class="media-list booklist">
+      <li>
+      <h4 style="padding:20px;margin:0px;color:rgba(0,0,0,0.6);text-align:center;">欢迎使用MARK:添加第一本书的页码吧。</h4></li>
       </ul>
  </div>
 </div>       
