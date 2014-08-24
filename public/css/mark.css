@@ -66,7 +66,10 @@ body{background-color: #f5f5f5;}
 	margin:5px 0 0 16px;
 	cursor:pointer;
 }
-.login-content{background-color:#e91e63;padding:24px 24px 244px 24px;}
+.login-content{background:#e91e63 url(/img/markbg.jpg) center -240px no-repeat;
+	background-attachment: scroll;
+	background-clip: border-box;
+	padding:108px 24px 292px 24px;}
 .mk-login-inner{margin:0 auto;max-width:350px;}
 h3.login-logo{
     border: 6px solid #333;
