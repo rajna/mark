@@ -3,7 +3,7 @@
   <head>
     <meta charset='utf8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <meta name='viewport' content='width=device-width,initial-scale=1'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
    <title>MARK</title>
     <link rel='stylesheet' href='/css/bootstrap.min.css'>
     <link rel='stylesheet' href='/css/font-awesome.min.css'>
@@ -29,6 +29,7 @@
   <script src='js/controllers.js'></script>
   <script src='js/filters.js'></script>
   <script src='js/directives.js'></script>
+  <script src="bootstrap-gh-pages/ui-bootstrap-tpls-0.11.0.min.js"></script>
 
    <!--登陆界面-->
    <script type="text/ng-template" id="loginView">
@@ -119,6 +120,18 @@
   <div class="container mk-list-wrap">
     <div class="navbar-header">
       <h3 class="mark-logo" ng-click="openNav()">[[title]]</h3>
+      
+          <span class="dropdown mk-top-drop" on-toggle="toggled(open)">
+            <a href class="dropdown-toggle">
+              [[listfilter]]<i class="fa fa-caret-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu">
+              <li>
+                <a ng-click="selfbooklist()">个人</a>
+                <a ng-click="booklist()">所有</a>
+              </li>
+            </ul>
+          </span>
     </div>
     <div class="pull-right top-fuc">
       <i class="fa fa-users" ng-click="searchUsers()"></i>
@@ -159,7 +172,7 @@
           <div class="row book-desc">[[book.bookdesc]]</div>
           <div class="row book-act">
             <div class="col-xs-8">
-              <span class="glyphicon glyphicon-heart-empty"></span>
+              
               <span class="glyphicon glyphicon-comment"></span>
               <span class="glyphicon glyphicon-share" ng-click="openDuoKan()"></span>
             </div>
@@ -305,7 +318,7 @@
     <span class="mk-u-intrest">可能感兴趣的人<span>
     <ul class="media-list mk-u-wrap">
       <li ng-repeat="user in users" >
-          <a class="mk-u-img pull-left"><img src="./img/person.jpg" width="40px" height="40px"><span class="mk-u-name">[[user.name]] follow [[user.follows]]<span></a> <i class="fa fa-plus" ng-click="folowUser(user)"></i>
+          <a class="mk-u-img pull-left"><img src="./img/person.jpg" width="40px" height="40px"><span class="mk-u-name">[[user.name]]<span></a> <i class="fa fa-plus" ng-click="folowUser(user,$event.target)"></i><span class="mk-u-following">已关注</span>
         </li>
       </ul>
  </div>

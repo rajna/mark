@@ -102,38 +102,58 @@ exports.reg=function(req,res){
 
 //书籍列表API
 exports.booklist = function (req, res) {
-      var query={user:req.params.user};
-      /*Mark.find(query,function(error,data){
-        var books =[];
-        data.forEach(function (book, i) {
-          books.push({
-            id: book._id,
-            name: book.name,
-            pagenum: book.pagenum,
-            bookdesc: book.bookdesc,
-            bookface: book.bookface,
-            user:book.user,
-            date:book.date
+      
+      User.findOne({'name':req.params.user}).populate('followings').exec(function(error,users){
+        var query=Mark.find({});
+        if(users.followings){
+           var peoples=[];
+            peoples.push(req.params.user);
+            users.followings.forEach(function(user,i){
+              peoples.push(user.name);
+            });
+           query.where('user').in(peoples);
+        }
+        query.sort({'_id':-1});
+        query.exec(function(error,data){
+          var books =[];
+          data.forEach(function (book, i) {
+            books.push({
+              id: book._id,
+              name: book.name,
+              pagenum: book.pagenum,
+              bookdesc: book.bookdesc,
+              bookface: book.bookface,
+              user:book.user,
+              date:book.date
+            });
           });
-        });*/
-      var query=Mark.find({});
-      query.where('user',req.params.user);
-      query.sort({'_id':-1});
-      query.exec(function(error,data){
-        var books =[];
-        data.forEach(function (book, i) {
-          books.push({
-            id: book._id,
-            name: book.name,
-            pagenum: book.pagenum,
-            bookdesc: book.bookdesc,
-            bookface: book.bookface,
-            user:book.user,
-            date:book.date
+          res.json(books);
+        }); 
+      });
+      
+    };
+
+//书籍列表API
+exports.selfbooklist = function (req, res) {
+        var query=Mark.find({});
+        query.where('user').in([req.params.user]);
+        query.sort({'_id':-1});
+        query.exec(function(error,data){
+          var books =[];
+          data.forEach(function (book, i) {
+            books.push({
+              id: book._id,
+              name: book.name,
+              pagenum: book.pagenum,
+              bookdesc: book.bookdesc,
+              bookface: book.bookface,
+              user:book.user,
+              date:book.date
+            });
           });
-        });
-        res.json(books);
-      });	
+          res.json(books);
+        }); 
+      
     };
 
 //单个书籍API
@@ -209,7 +229,7 @@ exports.baike = function (req, res) {
    cheerio = require('cheerio'),//会用到cheerio插件
    http = require('http'),
    url = require('url');
-   var host = 'http://book.douban.com/subject_search?search_text='+bookname;//可修改为其他的百科地址
+   var host = 'http://book.douban.com/subject_search?search_text='+bookname;
    var html ="<ul><li>";
    request(host, function (error, response, data) {
      if (!error && response.statusCode == 200) {
@@ -233,35 +253,43 @@ exports.baike = function (req, res) {
 
 //用户列表
 exports.userlist = function (req, res) {
-      User.find(function(error,data){
-        var users =[];
-        data.forEach(function (user, i) {
-          users.push({
-            id: user._id,
-            name: user.name,
-            imgUrl: user.imgUrl,
-            follows:user.follows
-          });
-        });
-        res.json(users);
-      }); 
+    var useremail=req.params.useremail;
+      User.findOne({'email':useremail}).exec(function(error,users){
+        User.find({})
+          .where('_id')
+          .nin(users.followings)
+          .exec(function(error,data){
+            var users =[];
+            if(data){
+              data.forEach(function (user, i) {
+              if(user.email!=useremail){
+                users.push({
+                  id: user._id,
+                  name: user.name,
+                  imgUrl: user.imgUrl,
+                  follows:user.follows
+                });
+              }
+              
+            });
+            }
+            
+            res.json(users);
+          });     
+      });
+
     };
 
 exports.folowUser = function (req, res) {
-  if(!req.body.user){
+  var curemail=req.body.user;
+  if(!curemail){
     res.json({
      msg:false
     });
   }
-    console.log(req.body.user);
-    console.log(req.body.follow);
-
-    var follow=new Follow({
-    email:req.body.user,
-    follow:req.body.follow
-   });
-
-    follow.save(function(err, doc){
+  User.findOne({'email':curemail},function(error,user){
+    user.followings.push(req.body.follow);
+    user.save(function(err, doc){
                if(err){
                    res.json({
                       msg:false
@@ -270,5 +298,7 @@ exports.folowUser = function (req, res) {
                res.json({
                       msg:true
                     });
-          });      
+          });  ;
+  });
+   
 };

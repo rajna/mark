@@ -47,10 +47,36 @@ angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
       $location.path('/login');
      }
      $scope.user=$cookieStore.get('user');
-     $scope.books = Book.query({user:$cookieStore.get('user').name});
+     $scope.books = Book.queryself({user:$cookieStore.get('user').name});
      $scope.form = {};
      $scope.title="MARK";
      $scope.clicked=false;
+     $scope.listfilter="个人";
+    
+    $scope.status = {
+      isopen: false
+    };
+
+    $scope.toggled = function(open) {
+      console.log('Dropdown is now: ', open);
+    };
+
+    $scope.toggleDropdown = function($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      $scope.status.isopen = !$scope.status.isopen;
+    };
+    //下拉菜单end
+    $scope.selfbooklist=function(){
+          $scope.listfilter="个人";
+          $scope.books=Book.queryself({user:$cookieStore.get('user').name});
+          $scope.apply();
+    };
+    $scope.booklist=function(){
+          $scope.listfilter="所有";
+          $scope.books=Book.query({user:$cookieStore.get('user').name});
+          $scope.apply();
+    };
     $scope.openDuoKan= function () {
       Android.showToast();
     };
@@ -89,24 +115,31 @@ angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
     }
   }).
   controller('searchUsersController',function($scope,$http,$location,$cookieStore,User){
-    if(!$cookieStore.get('user')){
+    var user=$cookieStore.get('user');
+    if(!user){
       $location.path('/');
      }
-    $scope.users = User.query();
+    $scope.users = User.query({useremail:user.email});
     $scope.goMark=function(){
       $location.path('/mark');
     }
     $scope.form={};
-    $scope.folowUser=function(user){
+    $scope.folowUser=function(user,target){
 
       $scope.form.user=$cookieStore.get('user').email;
       $scope.form.follow=user.id;
-      $http.post('/folowUser/',$scope.form).
-        success(function(data) {
-          if(data.success){
-            alert("ok");
-          }
-        });
+       $http.post('/folowUser/',$scope.form).
+         success(function(data) {
+           if(data.msg){
+             angular
+              .element(target)
+              .addClass('mk-u-following')
+              .parent()
+              .children()
+              .eq(2)
+              .addClass('mk-u-followed');
+           }
+         });
     }
   }).
   controller('BaikeController', function ($scope,$http,$location,$cookieStore) {

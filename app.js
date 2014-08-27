@@ -68,16 +68,16 @@ app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
 
 // JSON API
+app.get('/books/:user/selfbooklist', api.selfbooklist);
 app.get('/books/:user/booklist', api.booklist);
 app.get('/books/:id', api.singleBook);
-app.post('/books', api.addMark);
 app.delete('/books/:id', api.removeMark);
 app.post('/api/addMark', api.addMark);
 
 app.post('/api/reg', api.reg);
 
 //查用户列表
-app.get('/user/userlist', api.userlist);
+app.get('/user/:useremail/userlist', api.userlist);
 app.post('/folowUser/', api.folowUser);
 
 //登陆
