@@ -71,9 +71,10 @@ app.get('/partials/:name', routes.partials);
 app.get('/books/:user/selfbooklist', api.selfbooklist);
 app.get('/books/:user/booklist', api.booklist);
 app.get('/books/:id', api.singleBook);
+app.post('/books', api.addMark);
+app.get('/books/comment/:id', api.singleBookftComment);
 app.delete('/books/:id', api.removeMark);
-app.post('/api/addMark', api.addMark);
-
+app.post('/books/addComment', api.addComment);
 app.post('/api/reg', api.reg);
 
 //查用户列表

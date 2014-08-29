@@ -56,7 +56,11 @@ config(function ($routeProvider, $locationProvider,$httpProvider) {
     when('/books/:id', { 
      template: document.getElementById('booknewmarkView').text,
      controller: 'BookmarkedController' 
-   }).
+    }).
+    when('/books/comment/:id', { 
+     template: document.getElementById('addcommentView').text,
+     controller: 'MarkcommentController' 
+    }).
     when('/addMark', {
       template: document.getElementById('addmarkView').text,
       controller: 'BooksController'

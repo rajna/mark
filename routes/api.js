@@ -29,10 +29,8 @@ db.on('error',function(){
 
 var UserSchema=require('../models/user.js').UserSchema;
 var MarkSchema=require('../models/mark.js').MarkSchema;
-var FollowSchema=require('../models/follow.js').FollowSchema;
 var User=db.model('users',UserSchema);
 var Mark=db.model('marks',MarkSchema);
-var Follow=db.model('follows',FollowSchema);
 
 //用户登陆API
 exports.login=function(req,res){
@@ -169,6 +167,19 @@ exports.singleBook = function (req, res) {
      });  
     };
 
+//单个书籍API
+exports.singleBookftComment = function (req, res) { 
+      var bookid=req.params.id; 
+      Mark.find({_id:bookid},function(err,book){
+      if(book[0]){
+        res.json(book[0]);
+      }else{
+        res.json({error: "未获得数据"});
+      }
+      
+     });  
+    };
+
 exports.addMark = function (req, res) {
   if(!req.body.user){
     res.json({
@@ -203,6 +214,36 @@ exports.addMark = function (req, res) {
                       msg:true
                     });
           })      
+};
+
+exports.addComment = function (req, res) {
+  var markid=req.body._id,
+  owner=req.body.userid,
+  content=req.body.content;
+  if(!owner){
+    res.json({
+     msg:false
+    });
+  }
+
+  var comment={
+    owner:owner,
+    content:content
+  }
+
+  Mark.findOne({'_id':markid},function(error,mark){
+    mark.comment.push(comment);
+    mark.save(function(err, doc){
+               if(err){
+                   res.json({
+                      msg:false
+                    });
+               }
+               res.json({
+                      msg:true
+                    });
+          });  ;
+  });   
 };
 
 exports.removeMark = function (req, res) {

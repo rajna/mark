@@ -90,6 +90,10 @@ angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
           $rootScope.go('/mark', 'slideLeft')
 	      });
 	  };
+    $scope.addComment= function (book) {
+      $rootScope.go('/books/comment/'+book.id, 'slideLeft');
+    };
+    
     $scope.addNewmark= function (book) {
        $rootScope.go('/books/'+book.id, 'slideLeft');
     };
@@ -160,4 +164,18 @@ angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
         $location.path('/mark');
       });
     }
+  }).
+  controller('MarkcommentController', function ($scope,$http,$location,$routeParams,$cookieStore,Book) {
+    if(!$cookieStore.get('user')){
+      $location.path('/');
+     }
+    $scope.book = Book.get({id: $routeParams.id});
+    $scope.postComment= function () {
+      $scope.book.userid=$cookieStore.get('user')._id;
+      $http.post('/books/addComment',$scope.book).
+        success(function(data) {
+          $scope.book = Book.get({id: $routeParams.id});
+          $scope.apply();
+        });
+    };
   })

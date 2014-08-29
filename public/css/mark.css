@@ -381,7 +381,15 @@ height:208px;
 .mk-u-intrest{color:#989898;font-size: 14px;}
 .mk-u-following{display:none;}
 .mk-u-followed{display:block;}
-
+.mk-commentarea{
+position:fixed;bottom:0px;
+border-top: 2px solid #ccc;
+border-radius: 2px;
+box-shadow: 0 0px -1px 0 rgba(0, 0, 0, 0.2);
+background: #fff;
+width:100%;
+left: 0px;
+}
 @media only screen and (min-width: 1200px){
 	.mark-container .mk-container-wrap {
 width: 920px;

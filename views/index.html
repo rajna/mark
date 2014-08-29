@@ -173,7 +173,7 @@
           <div class="row book-act">
             <div class="col-xs-8">
               
-              <span class="glyphicon glyphicon-comment"></span>
+              <span class="glyphicon glyphicon-comment" ng-click="addComment(book)"></span>
               <span class="glyphicon glyphicon-share" ng-click="openDuoKan()"></span>
             </div>
             <div class="col-xs-4">
@@ -325,3 +325,62 @@
 </div>  
 </script>
 <!--查询用户searchUsers end-->
+
+
+<!--评论addcommentView start-->
+<script type="text/ng-template" id="addcommentView">
+<div class="navbar navbar-inverse navbar-fixed-top mk-menu-f"role="navigation">
+  <div class="container">
+    <div class="row mk-t-fun">
+      <div class="col-xs-6 mk-cancle">
+        <i class="fa fa-arrow-left"></i>
+      </div>
+      
+    </div>
+  </div>
+</div>
+<div class="container mark-container">
+  <div class="mk-container-wrap" style="position:relative;">
+  <ul class="media-list booklist">
+      <li>
+          <div class="row mk-bl-wrap">
+            <div class="col-xs-10 mk-bl-l">
+              <div>
+                <a>
+                  <img class="media-object pull-left" ng-src="[[book.bookface]]"/>
+                </a>
+                <div>
+                  <h3 class="mark-title"> [[book.name]]</h3>
+                  <h4 class="mark-info">来自: [[book.user]] [[book.date]] </h4>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-2 mk-bl-r">
+              <p class="mark-pagenumber pull-right">
+                <span class="half-circle">[[book.pagenum]]</span>
+              </p>
+            </div>
+          </div>
+          <div class="row book-desc">[[book.bookdesc]]</div>
+          
+        </li>
+      </ul>
+      <ul>
+        <li ng-repeat="comment in book.comment">
+          [[comment.content]]
+        </li>
+      </ul>
+      <div class="mk-commentarea">
+      <ng-form class="form mk-add-form" role="form" name="addcomment">
+      <div class="form-group">
+          <input type="text" class="form-control" ngbk-focus ng-model='book.content' required focus placeholder="发表评论"/>
+          <input type="text" class="form-control" ngbk-focus ng-model='book._id'  value="[[book._id]]" style="display:none;"/>
+          <i class="fa fa-paper-plane" ng-click="postComment()" ng-disabled='!addcomment.$valid'></i>
+        </div>
+      </ng-form>
+      </div>
+      </div>
+</div>
+</script>
+<!--评论addcommentView end-->
