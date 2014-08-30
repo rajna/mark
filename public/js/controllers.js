@@ -171,7 +171,7 @@ angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
      }
     $scope.book = Book.get({id: $routeParams.id});
     $scope.postComment= function () {
-      $scope.book.userid=$cookieStore.get('user')._id;
+      $scope.book.user=$cookieStore.get('user').name;
       $http.post('/books/addComment',$scope.book).
         success(function(data) {
           $scope.book = Book.get({id: $routeParams.id});

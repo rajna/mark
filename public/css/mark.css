@@ -363,12 +363,12 @@ height:208px;
 .mk-u-wrap li a{
 	display:block;
 	height: 56px;
-	width:90%;
+	width:85%;
 	color:#4C4C4C;
 	font-size: 16px;
 }
 
-.mk-u-wrap li i{font-size: 18px;color:#9e9e9e;cursor:pointer;}
+.mk-u-wrap li i{font-size: 18px;color:#fff;cursor:pointer;margin-top: 3px;}
 .mk-u-wrap li a img{
 	border-radius: 50%;
 	margin-right: 16px;
@@ -379,8 +379,20 @@ height:208px;
 	cursor: pointer;
 }
 .mk-u-intrest{color:#989898;font-size: 14px;}
+
+.mk-fellow-add{
+	background-color: #00bcd4;
+	display: inline-block;
+	height:32px;
+	padding:4px;
+	border-radius: 3px;
+	color:#fff;
+	line-height: 24px;
+	cursor: pointer;
+}
 .mk-u-following{display:none;}
 .mk-u-followed{display:block;}
+.mk-comment-bg{background-color: #fff;}
 .mk-commentarea{
 position:fixed;bottom:0px;
 border-top: 2px solid #ccc;
@@ -390,6 +402,17 @@ background: #fff;
 width:100%;
 left: 0px;
 }
+.mk-add-form .mk-comment-input{padding:20px;}
+.mk-add-form .mk-comment-input input.form-control{display: inline-block;width:90%;}
+.mark-container ul.booklist li.mk-list-item{
+	box-shadow: none;background:none;
+
+}
+.mk-commentlist{list-style: none;margin:0px 20px 20px 20px;padding:0px 0px 8px 0px;}
+.mk-commentlist li h3{font-size: 16px;}
+.mk-commentlist li div{border-bottom: 1px solid #e0e0e0;}
+.mk-commentlist li p{font-size: 14px;}
+.mk-commentlist li img{width:32px;height: 32px;border-radius: 50%;margin-right: 16px;}
 @media only screen and (min-width: 1200px){
 	.mark-container .mk-container-wrap {
 width: 920px;

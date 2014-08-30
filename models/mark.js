@@ -7,7 +7,7 @@ exports.MarkSchema=new mongoose.Schema({
           bookdesc:String,
           date:Date,
           comment:[{
-          	owner:{ type: Schema.Types.ObjectId, ref: 'User' },
+          	owner:{ type: String },
           	content:{type :String}
           }]
         });

@@ -170,9 +170,10 @@ exports.singleBook = function (req, res) {
 //单个书籍API
 exports.singleBookftComment = function (req, res) { 
       var bookid=req.params.id; 
-      Mark.find({_id:bookid},function(err,book){
-      if(book[0]){
-        res.json(book[0]);
+      Mark.findOne({_id:bookid}).populate('owner').exec(function(err,book){
+      if(book){
+        console.log(book);
+        res.json(book);
       }else{
         res.json({error: "未获得数据"});
       }
@@ -218,7 +219,7 @@ exports.addMark = function (req, res) {
 
 exports.addComment = function (req, res) {
   var markid=req.body._id,
-  owner=req.body.userid,
+  owner=req.body.user,
   content=req.body.content;
   if(!owner){
     res.json({
