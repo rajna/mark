@@ -335,6 +335,34 @@ exports.userlist = function (req, res) {
 
     };
 
+//关注列表
+exports.fellowlist = function (req, res) {
+    var useremail=req.params.useremail;
+      User.findOne({'email':useremail}).exec(function(error,users){
+        User.find({})
+          .where('_id')
+          .in(users.followings)
+          .exec(function(error,data){
+            var users =[];
+            if(data){
+              data.forEach(function (user, i) {
+                users.push({
+                  id: user._id,
+                  name: user.name,
+                  imgUrl: user.imgUrl,
+                  follows:user.follows
+                });
+              
+            });
+            }
+            
+            res.json(users);
+          });     
+      });
+
+    };
+
+
 exports.folowUser = function (req, res) {
   var curemail=req.body.user;
   if(!curemail){
@@ -357,3 +385,28 @@ exports.folowUser = function (req, res) {
   });
    
 };
+
+exports.folowRemove = function (req, res) {
+  var curemail=req.body.user;
+  if(!curemail){
+    res.json({
+     msg:false
+    });
+  }
+  User.findOne({'email':curemail},function(error,user){
+    user.followings.pop(req.body.follow);
+    user.save(function(err, doc){
+               if(err){
+                   res.json({
+                      msg:false
+                    });
+               }
+               res.json({
+                      msg:true
+                    });
+          });  ;
+  });
+   
+};
+
+

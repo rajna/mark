@@ -14,7 +14,8 @@ factory('Book', function ($resource) {
 }).
 factory('User', function ($resource) {
 		 return $resource('/user/:useremail/:id', {id:'@id'}, {
-              query: { method: 'GET', params: {id:'userlist'},isArray:true}
+              query: { method: 'GET', params: {id:'userlist'},isArray:true},
+              queryfellow: { method: 'GET', params: {id:'fellowlist'},isArray:true}
             });
 })
 

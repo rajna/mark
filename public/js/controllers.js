@@ -70,12 +70,12 @@ angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
     $scope.selfbooklist=function(){
           $scope.listfilter="个人";
           $scope.books=Book.queryself({user:$cookieStore.get('user').name});
-          $scope.apply();
+          
     };
     $scope.booklist=function(){
           $scope.listfilter="所有";
           $scope.books=Book.query({user:$cookieStore.get('user').name});
-          $scope.apply();
+          
     };
     $scope.openDuoKan= function () {
       Android.showToast();
@@ -83,6 +83,9 @@ angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
     $scope.searchUsers= function () {
       $location.path('/searchUsers');
     };
+    $scope.searchFellows=function(){
+      $location.path('/searchFellows');
+    }
 	  $scope.addMark= function () {
       $scope.form.user=$cookieStore.get('user').name;
 	    $http.post('/books',$scope.form).
@@ -114,7 +117,6 @@ angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
     $scope.remove=function(index,book){
       book.$remove(function(data){
        $scope.books.splice(index, 1);
-       $scope.apply();
       });
     }
   }).
@@ -133,6 +135,43 @@ angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
       $scope.form.user=$cookieStore.get('user').email;
       $scope.form.follow=user.id;
        $http.post('/folowUser/',$scope.form).
+         success(function(data) {
+           if(data.msg){
+             var ele=angular
+              .element(target)
+              .parent('li');
+             if(ele.attr("class")!="ng-scope"){
+               ele=ele.parent();
+             }
+            ele
+              .children()
+              .eq(1)
+              .removeClass('mk-u-adding')
+              .addClass('mk-u-added');
+            ele
+              .children()
+              .eq(2)
+              .removeClass('mk-u-following')
+              .addClass('mk-u-followed');
+           }
+         });
+    }
+  }).
+controller('searchFellowsController',function($scope,$http,$location,$cookieStore,User){
+    var user=$cookieStore.get('user');
+    if(!user){
+      $location.path('/');
+     }
+    $scope.users = User.queryfellow({useremail:user.email});
+    $scope.goMark=function(){
+      $location.path('/mark');
+    }
+    $scope.form={};
+    $scope.folowRemove=function(user,target){
+
+      $scope.form.user=$cookieStore.get('user').email;
+      $scope.form.follow=user.id;
+       $http.post('/folowRemove/',$scope.form).
          success(function(data) {
            if(data.msg){
              var ele=angular
@@ -184,7 +223,6 @@ angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
       $http.post('/books/addComment',$scope.book).
         success(function(data) {
           $scope.book = Book.get({id: $routeParams.id});
-          $scope.apply();
         });
     };
   })

@@ -79,7 +79,11 @@ app.post('/api/reg', api.reg);
 
 //查用户列表
 app.get('/user/:useremail/userlist', api.userlist);
+//查询关注
+app.get('/user/:useremail/fellowlist', api.fellowlist);
 app.post('/folowUser/', api.folowUser);
+//取消关注
+app.post('/folowRemove/', api.folowRemove);
 
 //登陆
 app.post('/api/login', api.login);

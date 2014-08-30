@@ -112,7 +112,7 @@
         <p> [[user.email]]</p>
       </li>
       <li>
-        <i class="fa fa-bell"></i><a>提醒</a></li>
+        <i class="fa fa-heart"></i><a ng-click="searchFellows()">关注</a></li>
       <li class="mk-m-logout">
         <i class="fa fa-power-off"></i><a ng-click="logout()"> 退出</a>
       </li>
@@ -179,8 +179,14 @@
               <span class="glyphicon glyphicon-share" ng-click="openDuoKan()"></span>
             </div>
             <div class="col-xs-4">
-              <span class="glyphicon glyphicon-bookmark pull-right" ng-click="addNewmark(book)"></span>
-              <span class="glyphicon glyphicon-remove pull-right" ng-click="remove($index,book)"></span>
+              
+              <span ng-switch on="[[book.user]]">
+              <span class="glyphicon glyphicon-bookmark pull-right" ng-switch-when="[[user.name]]"  ng-click="addNewmark(book)"></span>
+              <span class="glyphicon glyphicon-remove pull-right" ng-switch-when="[[user.name]]" ng-click="remove($index,book)"></span>
+              <span class="glyphicon glyphicon-bookmark pull-right" ng-switch-default  ng-click="addNewmark(book)"></span>
+              <span class="glyphicon glyphicon-remove pull-right" ng-switch-default ng-click="remove($index,book)"></span>
+              
+              </span>
             </div>
           </div>
         </li>
@@ -332,6 +338,39 @@
 </div>  
 </script>
 <!--查询用户searchUsers end-->
+
+<!--查询关注用户searchFellows start-->
+<script type="text/ng-template" id="searchFellowsView">
+<div class="navbar navbar-inverse navbar-fixed-top mk-menu-f" role="navigation">
+  <div class="container">
+    <div class="row mk-t-fun">
+      <div class="col-xs-6 mk-cancle">
+        <i class="fa fa-arrow-left" ng-click="goMark()"></i><span class="mk-t-tile">关注的用户</span>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+
+<div class="container mark-container">
+  
+  <div class="mk-container-wrap">
+    <span class="mk-u-intrest">可能感兴趣的人<span>
+    <ul class="media-list mk-u-wrap">
+      <li ng-repeat="user in users" >
+          <a class="mk-u-img pull-left"><img src="/img/person.jpg" width="40px" height="40px"><span class="mk-u-name">[[user.name]]<span></a> 
+          <span class="mk-fellow-add mk-u-adding" ng-click="folowRemove(user,$event.target)">
+          <i class="fa fa-times"></i>
+          取消关注
+          </span>
+          <span class="mk-u-following">已取消关注</span>
+        </li>
+      </ul>
+ </div>
+</div>  
+</script>
+<!--查询关注用户searchFellows end-->
 
 
 <!--评论addcommentView start-->

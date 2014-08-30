@@ -73,6 +73,10 @@ config(function ($routeProvider, $locationProvider,$httpProvider) {
       template: document.getElementById('searchUsersView').text,
       controller: 'searchUsersController'
     }).
+    when('/searchFellows', {
+      template: document.getElementById('searchFellowsView').text,
+      controller: 'searchFellowsController'
+    }).
     otherwise({
       redirectTo: '/login'
     });
