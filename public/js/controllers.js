@@ -135,12 +135,21 @@ angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
        $http.post('/folowUser/',$scope.form).
          success(function(data) {
            if(data.msg){
-             angular
+             var ele=angular
               .element(target)
-              .addClass('mk-u-following')
-              .parent()
+              .parent('li');
+             if(ele.attr("class")!="ng-scope"){
+               ele=ele.parent();
+             }
+            ele
+              .children()
+              .eq(1)
+              .removeClass('mk-u-adding')
+              .addClass('mk-u-added');
+            ele
               .children()
               .eq(2)
+              .removeClass('mk-u-following')
               .addClass('mk-u-followed');
            }
          });

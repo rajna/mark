@@ -363,7 +363,7 @@ height:208px;
 .mk-u-wrap li a{
 	display:block;
 	height: 56px;
-	width:85%;
+	width:80%;
 	color:#4C4C4C;
 	font-size: 16px;
 }
@@ -382,7 +382,7 @@ height:208px;
 
 .mk-fellow-add{
 	background-color: #00bcd4;
-	display: inline-block;
+	
 	height:32px;
 	padding:4px;
 	border-radius: 3px;
@@ -392,6 +392,8 @@ height:208px;
 }
 .mk-u-following{display:none;}
 .mk-u-followed{display:block;}
+.mk-u-adding{display: inline-block;}
+.mk-u-added{display:none;}
 .mk-comment-bg{background-color: #fff;}
 .mk-commentarea{
 position:fixed;bottom:0px;
