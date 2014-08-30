@@ -81,20 +81,33 @@ exports.reg=function(req,res){
        
              var success='注册成功!',
                  error='注册失败!';
-            user.save(function(err,doc){ 
-              if(err){ 
+            var query=User.find({})
+            .or([{name:name},{email:email}])
+            .exec(function(error,data){
+              console.log(data);
+              if(data){
+                error='用户名或密码已被注册!';
                 res.json({
                   error:error
                 });
+              }else{
+                user.save(function(err,doc){ 
+                if(err){ 
+                  res.json({
+                    error:error
+                  });
+                  
+                } 
+                //成功后，将用户信息记录在页面间的会话req.session中，并且跳转到一个新页面，就是内容集中展示页面
+                //req.session.user = user; 
+                res.json({
+                  success:doc.email
+                });
                 
-              } 
-              //成功后，将用户信息记录在页面间的会话req.session中，并且跳转到一个新页面，就是内容集中展示页面
-              //req.session.user = user; 
-              res.json({
-                success:doc.email
               });
-              
+              }
             });
+            
 }
 
 
