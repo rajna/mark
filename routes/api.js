@@ -278,7 +278,7 @@ exports.removeMark = function (req, res) {
 
 
 
-exports.baike = function (req, res) {
+exports.fetchBookface = function (req, res) {
    var bookname=req.body.bookname;
    var request = require('request'),//会用到request 插件
    cheerio = require('cheerio'),//会用到cheerio插件

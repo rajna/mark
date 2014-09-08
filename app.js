@@ -89,7 +89,7 @@ app.post('/folowRemove/', api.folowRemove);
 app.post('/api/login', api.login);
 
 //网络爬虫,爬书籍信息
-app.post('/api/baike', api.baike);
+app.post('/api/fetchBookface', api.fetchBookface);
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);
 

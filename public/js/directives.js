@@ -29,12 +29,16 @@ angular.module('myApp.directives', []).
         link : function(scope, elm, attrs, ctrl) {
             scope.hasdata=false;
             elm.bind('keyup', function() {
-              $http({method: 'POST',url:'/api/baike',data:{bookname:scope.form.name}}).success(function(data, status, headers, config) {
+              $http({method: 'POST',url:'/api/fetchBookface',data:{bookname:scope.form.name}}).success(function(data, status, headers, config) {
+                data.bookfaces.push({
+                  name:scope.form.name,
+                  bookface: "/img/markBookfaceDefault.png"
+                });
                 scope.bookfaces= data.bookfaces;
                 scope.hasdata=true;
                 //scope.$apply();
               }).error(function(data, status, headers, config) {
-                alert("server error");
+                alert("获取数据失败!");
               });
             });
         }
