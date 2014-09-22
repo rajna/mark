@@ -8,9 +8,10 @@
     <link rel='stylesheet' href='/css/bootstrap.min.css'>
     <link rel='stylesheet' href='/css/font-awesome.min.css'>
     <link rel='stylesheet' href='/css/mark.css'>
+    <link rel="import" href="/polymer/components/font-roboto/roboto.html">
     <link href="/img/markweblogo.png" rel="shortcut icon" type="image/png">
   </head>
-  <body>
+  <body unresolved>
     <div id="mk-loading" butterbar ><h3 class="login-logo"><span>MARK</span></h3>
     <img src="/img/markbg.jpg" style="display:none;">
     </div>
@@ -19,6 +20,15 @@
 
  </body>
 </html>
+  <script src="/polymer/components/platform/platform.js"></script>
+  <link rel="import"
+  href="/polymer/components/core-header-panel/core-header-panel.html">
+  <link rel="import"
+  href="/polymer/components/core-toolbar/core-toolbar.html">
+  <link rel="import"
+  href="/polymer/components/paper-tabs/paper-tabs.html">
+  <link rel="import"
+  href="/polymer/components/paper-input/paper-input.html">
 
   <script src='js/lib/angular/angular.js'></script>
   <script src='js/lib/angular/angular-route.js'></script>
@@ -32,7 +42,7 @@
   <script src='js/filters.js'></script>
   <script src='js/directives.js'></script>
   <script src="bootstrap-gh-pages/ui-bootstrap-tpls-0.11.0.min.js"></script>
-
+  
    <!--登陆界面-->
    <script type="text/ng-template" id="loginView">
     <div class="login-content mk-view-animate" ng-controller="loginController">
@@ -118,12 +128,13 @@
       </li>
     </ul>
   </nav>
+
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-  <div class="container mk-list-wrap">
+  <div class="clearfix mk-list-wrap">
     <div class="navbar-header">
       <h3 class="mark-logo" ng-click="openNav()">[[title]]</h3>
       
-          <span class="dropdown mk-top-drop" on-toggle="toggled(open)">
+          <!--<span class="dropdown mk-top-drop" on-toggle="toggled(open)">
             <a href class="dropdown-toggle">
               [[listfilter]]<i class="fa fa-caret-down"></i>
             </a>
@@ -133,17 +144,35 @@
                 <a ng-click="booklist()">所有</a>
               </li>
             </ul>
-          </span>
+          </span>-->
     </div>
     <div class="pull-right top-fuc">
+      <i class="fa fa-bullhorn" ng-click="showVoiceinput()"></i>
+      <i class="fa fa-bullhorn" ng-click="showNotification()"></i>
       <i class="fa fa-users" ng-click="searchUsers()"></i>
     </div>
   </div>
+  <core-header-panel>
+
+    <core-toolbar>
+    <paper-tabs id="tabs" selected="all" self-end>
+      <paper-tab name="all" ng-click="selfbooklist()">个人</paper-tab>
+      <paper-tab name="favorites" ng-click="booklist()">所有</paper-tab>
+    </paper-tabs>
+    </core-toolbar>
+
+    <!-- main page content will go here --> 
+
+  </core-header-panel>
+</div>
+<div class="mk-tabs">
+
 </div>
 
 <div class="container mark-container">
   
   <div class="mk-container-wrap" ng-switch on="books.length">
+
     <div class="mark-action" role="button">
         <a href="addMark">
           <i class="fa fa-plus"></i>

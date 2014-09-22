@@ -51,7 +51,7 @@ body{background-color: #f5f5f5;}
 
 .loading-hide{display:none;}
 .navbar-fixed-top{height:56px;background-color: rgba(233,30,99, 0.9);border-width:0 0 0 0;}
-.mk-list-wrap{padding-left: 16px;padding-right: 16px;}
+.mk-list-wrap{padding-left: 16px;padding-right: 16px;margin-left: auto;margin-right:auto;}
 
 .mark-logo{
 	border: 3px solid #333;
@@ -134,7 +134,7 @@ color:#fff;
 }
 
 
-.mark-container{margin-top:64px;padding-left: 16px;padding-right:16px;}
+.mark-container{margin-top:128px;padding-left: 16px;padding-right:16px;}
 .mk-importantpanel{
 	height:240px;
 	width:100%;
@@ -419,6 +419,32 @@ left: 0px;
 .mk-commentlist li div{border-bottom: 1px solid #e0e0e0;}
 .mk-commentlist li p{font-size: 14px;}
 .mk-commentlist li img{width:32px;height: 32px;border-radius: 50%;margin-right: 16px;}
+
+.mk-tabs{
+  position:fixed;
+  top: 56px;
+  left:0px;
+  z-index: 1030;
+}
+core-header-panel {
+  height: 100px;
+  overflow: auto;
+  margin-top: 9px;
+  -webkit-overflow-scrolling: touch; 
+}
+core-toolbar {
+  background: rgba(233,30,99, 0.9);
+  color: white;
+}
+#tabs {
+  width: 100%;
+  margin: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-transform: uppercase;
+}
 @media only screen and (min-width: 1200px){
 	.mark-container .mk-container-wrap {
 width: 920px;
@@ -434,5 +460,11 @@ margin-left:auto;
 margin-right: auto;
 }
 }
+@media (min-width: 481px) {
+    #tabs {
+      width: 200px;
+    }
+    
+  }
 
 

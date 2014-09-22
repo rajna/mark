@@ -83,6 +83,12 @@ angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
     $scope.searchUsers= function () {
       $location.path('/searchUsers');
     };
+    $scope.showNotification= function () {
+      Android.showNotification();
+    };
+    $scope.showVoiceinput= function () {
+      Android.showVoiceinput();
+    };
     $scope.searchFellows=function(){
       $location.path('/searchFellows');
     }
