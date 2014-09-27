@@ -10,14 +10,14 @@
 var express = require('express'),
   swig = require('swig'),
   routes = require('./routes'),
-  api = require('./routes/api'),
+  
   http = require('http'),
   path = require('path'), 
   //MongoStore = require('connect-mongo')(express),
   //settings = require('./settings'),
   flash=require('connect-flash');//页面的通知和错误信息显示
 
-var app = module.exports = express();
+var app = express();
 
 
 /**
@@ -25,7 +25,11 @@ var app = module.exports = express();
  */
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+var port=process.env.PORT || 3000;
+//app.set('port',port);
+var io=require('socket.io').listen(app.listen(port)),
+api=require('./routes/api');
+api.init(app,io);
 // Engine
 app.engine('html', swig.renderFile);
 app.set('views', __dirname + '/views');
@@ -99,5 +103,5 @@ app.get('*', routes.index);
  */
 
 http.createServer(app).listen(app.get('port'), function () {
-  console.log('Express server listening on port ' + app.get('port'));
+  console.log('Express server listening on port ' + port);
 });

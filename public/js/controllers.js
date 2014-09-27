@@ -53,6 +53,13 @@ angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
      $scope.clicked=false;
      $scope.listfilter="个人";
     
+    var url = 'http://192.168.1.3:3000';
+     var socket = io.connect(url);
+
+     socket.on('newmarkdone', function(data){
+      Android.showNotification(data.user,data.bookname,data.pagenum,data.bookdesc);
+     });
+
     $scope.status = {
       isopen: false
     };
@@ -96,7 +103,9 @@ angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
       $scope.form.user=$cookieStore.get('user').name;
 	    $http.post('/books',$scope.form).
 	      success(function(data) {
-          $rootScope.go('/mark', 'slideLeft')
+
+          $rootScope.go('/mark', 'slideLeft');
+
 	      });
 	  };
     $scope.addComment= function (book) {
@@ -209,13 +218,22 @@ controller('searchFellowsController',function($scope,$http,$location,$cookieStor
       });
   }).
   controller('BookmarkedController', function ($scope,$http,$location,$routeParams,$cookieStore,Book) {
-    if(!$cookieStore.get('user')){
+    var user=$cookieStore.get('user');
+    if(!user){
       $location.path('/');
      }
-    $scope.book = Book.get({id: $routeParams.id});
+     
+     var url = 'http://192.168.1.3:3000';
+     var socket = io.connect(url);
+
+    $scope.book= Book.get({id: $routeParams.id});
     $scope.save=function(){
       $scope.book.$save(function(book){
-        $location.path('/mark');
+          socket.emit('newmark',{user:user.name,
+                                 bookname:book.book.name,
+                                 pagenum:book.book.pagenum,
+                                 bookdesc:book.book.bookdesc});
+          $location.path('/mark');
       });
     }
   }).

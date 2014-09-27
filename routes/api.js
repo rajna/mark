@@ -32,6 +32,24 @@ var MarkSchema=require('../models/mark.js').MarkSchema;
 var User=db.model('users',UserSchema);
 var Mark=db.model('marks',MarkSchema);
 
+var sio;
+
+exports.init=function(app,io){
+  sio=io;
+  sio.sockets.on('connection', function (socket) {
+           console.log("socket connected");
+          socket.on('newmark',function(data){
+            socket.broadcast.emit('newmarkdone', 
+            {
+              user: data.user,
+              bookname:data.bookname,
+              pagenum:data.pagenum,
+              bookdesc:data.bookdesc});
+          });
+      });
+}
+
+
 //用户登陆API
 exports.login=function(req,res){
         var md5 = crypto.createHash('md5'), 
@@ -112,7 +130,7 @@ exports.reg=function(req,res){
 
 
 //书籍列表API
-exports.booklist = function (req, res) {
+exports.booklist = function (req,res) {
       
       User.findOne({'name':req.params.user}).populate('followings').exec(function(error,users){
         var query=Mark.find({});
@@ -225,7 +243,8 @@ exports.addMark = function (req, res) {
                     });
                }
                res.json({
-                      msg:true
+                      msg:true,
+                      book:doc
                     });
           })      
 };
