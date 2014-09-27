@@ -53,7 +53,7 @@ angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
      $scope.clicked=false;
      $scope.listfilter="个人";
     
-    var url = 'http://192.168.1.3:3000';
+    var url = 'http://fast-ridge-7096.herokuapp.com';
      var socket = io.connect(url);
 
      socket.on('newmarkdone', function(data){
@@ -223,7 +223,7 @@ controller('searchFellowsController',function($scope,$http,$location,$cookieStor
       $location.path('/');
      }
      
-     var url = 'http://192.168.1.3:3000';
+     var url = 'http://fast-ridge-7096.herokuapp.com';
      var socket = io.connect(url);
 
     $scope.book= Book.get({id: $routeParams.id});
