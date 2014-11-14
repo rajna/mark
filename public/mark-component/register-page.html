@@ -86,7 +86,7 @@
     .wide{
       background-color:#4dd0e1;
       z-index: 10000;
-      min-height: 650px;
+      min-height: 730px;
       overflow: hidden;
     }
 
@@ -129,6 +129,9 @@
 
     /*responsoble*/
     @media (max-width: 481px) {
+        .wide{
+          min-height: 450px;
+        }
         .wide>.mk-r-card {
           width: 100%;
           margin: 0;
@@ -141,6 +144,10 @@
         }
         .mk-f-inner{
           width: 100%;
+          margin:0 auto;
+          min-height:295px;
+          overflow:auto;
+          -webkit-overflow-scrolling:touch;
           padding:0 40px 40px 40px;
         }
     }
@@ -154,7 +161,10 @@
           
           <core-toolbar hero-id="thing" hero?="{{page === 0 || !noTransition}}">
             <div class="mk-r-title" cross-fade-delayed>现在就注册</div>
-            
+            <div on-tap="{{ajaxreg}}" class="fab white">
+            <core-icon icon="check"></core-icon>
+            <paper-ripple class="circle recenteringTouch" fit></paper-ripple>
+          </div>
           </core-toolbar>
 
           <div class="mk-r-form">
@@ -165,12 +175,9 @@
               <paper-input label="密  码" type = password inputValue="{{formdata.password}}" floatingLabel></paper-input>
             </div>
           </div>
-          <div on-tap="{{ajaxreg}}" class="fab white">
-            <core-icon icon="check"></core-icon>
-            <paper-ripple class="circle recenteringTouch" fit></paper-ripple>
-          </div>
+          <paper-toast id="toast1" text={{msg}} style="margin:0 auto;"></paper-toast>
         </div>
-       <paper-toast id="toast1" text={{msg}}></paper-toast>
+       
        <paper-icon-button class="main-button theme-color" icon="arrow-back" on-tap="{{ back }}" role="button" aria-label="arrow-back" cross-fade-delayed=""></paper-icon-button>
       </div>
       
