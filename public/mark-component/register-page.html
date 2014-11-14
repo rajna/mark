@@ -1,0 +1,227 @@
+<!--
+    @license
+    Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+    This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+    The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+    The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+    Code distributed by Google as part of the polymer project is also
+    subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+    
+    <link rel="import" href="../polymer/components/core-icons/core-icons.html">
+    <link rel="import" href="../polymer/components/paper-ripple/paper-ripple.html">
+    <link href="../polymer/components/core-icon-button/core-icon-button.html" rel="import">
+    <link href="../polymer/components/core-animated-pages/core-animated-pages.html" rel="import">
+    <link rel="import" href="../polymer/components/paper-icon-button/paper-icon-button.html">
+    <link rel="import" href="../polymer/components/core-ajax/core-ajax.html">
+    <link rel="import" href="../polymer/components/paper-toast/paper-toast.html">
+<polymer-element name="register-page">
+<template>
+  
+  <style>
+    
+    :host {
+      display: block;
+      position: relative;
+    }
+
+    core-animated-pages {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    .tall-toolbar {
+      box-sizing: border-box;
+    }
+
+    .tall-toolbar.colored {
+      fill: #fff;
+      color: #fff;
+    }
+
+    .tall-toolbar [flex] {
+      font-size: 1.5em;
+    }
+
+    core-icon-button {
+      margin: 16px;
+    }
+
+    .square {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      left: 16px;
+      top: 175px;
+    }
+
+    /* FAB */
+    .fab {
+      position: absolute;
+      top: 148px;
+      right: 16px;
+      display: inline-block;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      color: #fff;
+      overflow: hidden;
+      transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transition-delay: 0.2s;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+      cursor: pointer;
+    }
+    
+    .white {
+      background-color: #f5f5f5;
+      color: #626262;
+    }
+    
+    .fab>core-icon{
+      margin: 16px;
+    }
+    .wide{
+      background-color:#4dd0e1;
+      z-index: 10000;
+      min-height: 650px;
+      overflow: hidden;
+    }
+
+    .main-button {
+      position: absolute;
+      top: 12px;
+      left: 16px;
+      z-index: 10000;
+    }
+
+    .wide>.mk-r-card {
+      width: 512px;
+      margin: 64px auto 0;
+      border-radius: 2px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+      position:relative;
+    }
+
+    .mk-r-card core-toolbar{
+      background-color:#00bcd4;
+      height: 176px;
+      line-height: 26px;
+      border-bottom: 1px solid rgba(0,0,0,.15);
+    }
+    core-toolbar .mk-r-title{
+      height:28px;
+      font-size: 16px;
+      line-height: 150px;
+      position:relative;
+    }
+    .mk-r-form{
+      background-color:#fff;
+    }
+    .mk-f-inner{
+      width: 304px;
+      margin: 0 auto;
+      padding-bottom:40px;
+    }
+
+    /*responsoble*/
+    @media (max-width: 481px) {
+        .wide>.mk-r-card {
+          width: 100%;
+          margin: 0;
+        }
+        .main-button {
+          position: absolute;
+          top: 8px;
+          left: 8px;
+          z-index: 10000;
+        }
+        .mk-f-inner{
+          width: 100%;
+          padding:0 40px 40px 40px;
+        }
+    }
+    
+  </style>
+  <core-animated-pages id="pages" selected="{{page}}" selectedItem="{{selectedItem}}" transitions="hero-transition" no-transition?="{{noTransition}}">
+
+    <section id="page1" cross-fade>
+      <div class="tall-toolbar colored wide" layout vertical >
+        <div vertical class="mk-r-card">
+          
+          <core-toolbar hero-id="thing" hero?="{{page === 0 || !noTransition}}">
+            <div class="mk-r-title" cross-fade-delayed>现在就注册</div>
+            
+          </core-toolbar>
+
+          <div class="mk-r-form">
+            <div class="mk-f-inner">
+              <core-ajax id="ajaxregform" handleAs="json" response="{{response}}" on-core-response="{{handleReg}}" url="/api/reg" params="{{formdata}}" method="post" ></core-ajax>
+              <paper-input label="用户名" min="1" inputValue="{{formdata.name}}" floatingLabel></paper-input>
+              <paper-input label="邮  箱" type="email" inputValue="{{formdata.email}}" floatingLabel></paper-input>
+              <paper-input label="密  码" type = password inputValue="{{formdata.password}}" floatingLabel></paper-input>
+            </div>
+          </div>
+          <div on-tap="{{ajaxreg}}" class="fab white">
+            <core-icon icon="check"></core-icon>
+            <paper-ripple class="circle recenteringTouch" fit></paper-ripple>
+          </div>
+        </div>
+       <paper-toast id="toast1" text={{msg}}></paper-toast>
+       <paper-icon-button class="main-button theme-color" icon="arrow-back" on-tap="{{ back }}" role="button" aria-label="arrow-back" cross-fade-delayed=""></paper-icon-button>
+      </div>
+      
+    </section>
+
+  </core-animated-pages>
+</template>
+<script>
+
+  Polymer({
+
+    publish: {
+      page: {value: 0}
+    },
+    formdata:{},
+    selectedItem: null,
+    noTransition: true,
+    msg:"",
+
+    back: function() {
+      this.noTransition = true;
+      this.fire('nested-back');
+    },
+
+    handleReg:function(e){
+      if(!e.detail.response.error){
+        this.noTransition = true;
+        this.msg="注册成功!";
+        this.$.toast1.show();
+        setTimeout(function() {
+          this.fire('nested-back');
+        }.bind(this), 500);
+      }else{
+        this.msg="用户名或邮箱已被注册!";
+        this.$.toast1.show();
+      }
+    },
+
+    transition: function() {
+      this.noTransition = false;
+      this.page = this.page === 0 ? 1 : 0;
+    },
+
+    ajaxreg:function(event,detail,sender){
+       if(!this.formdata.name||!this.formdata.email||!this.formdata.password){
+          this.msg="信息填写有误"
+          this.$.toast1.show();
+       }else{
+          this.$.ajaxregform.go();
+       }
+    }
+  });
+</script>
+</polymer-element>

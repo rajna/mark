@@ -1,0 +1,80 @@
+<link href="register-page.html" rel="import">
+
+<polymer-element name="register-button" on-click="{{clickHandler}}">
+  <template>
+
+    <style>
+	     :host {
+	      display: block;
+	      position: absolute;
+	      top: 0;
+	      left: 0;
+	      bottom: 0;
+	      right: 0;
+        height:0px;  
+      }
+
+      core-animated-pages {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+      }
+
+      section {
+        text-align: center;
+      }
+
+      .square {
+        display: inline-block;
+        position:fixed;
+        bottom:0px;
+        left:0px;
+        padding:12px 0;
+        width: 100%;
+        height: 20px;
+        background-color: #00bcd4;
+        color: #fff;
+      }
+    </style>
+
+    <core-animated-pages selected="{{page}}" transitions="hero-transition cross-fade">
+
+      <section on-tap="{{transition}}" layout horizontal center-justified>
+
+        <div class="square" id="thing1" hero-id="thing" hero?="{{subpage === 0}}" cross-fade?="{{subpage !== 0}}">注册</div>
+       
+      </section>
+
+      <register-page page="{{subpage}}" vertical on-nested-back="{{back}}"></register-page>
+
+    </core-animated-pages>
+  </template>
+  <script>
+
+    Polymer('register-button', {
+      page: 0,
+      subpage: 0,
+
+      transition: function(e) {
+
+        var el = e.target;
+
+        setTimeout(function() {
+          this.page = 1;
+        }.bind(this), 200);
+      },
+
+      back: function() {
+        this.page = 0;
+      },
+
+      
+
+    });
+
+  </script>
+  </polymer-element>
+

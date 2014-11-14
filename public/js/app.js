@@ -7,7 +7,8 @@ angular.module('myApp', [
   'myApp.services',
   'myApp.directives',
   'ngAnimate',
-  'ui.bootstrap'
+  'ng-polymer-elements'
+  /*'ui.bootstrap'*/
 ], function ($interpolateProvider) {
         $interpolateProvider.startSymbol('[[');
         $interpolateProvider.endSymbol(']]');

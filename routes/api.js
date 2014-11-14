@@ -102,9 +102,9 @@ exports.reg=function(req,res){
             var query=User.find({})
             .or([{name:name},{email:email}])
             .exec(function(error,data){
-              console.log(data);
-              if(data){
-                error='用户名或密码已被注册!';
+              console.log(data.length);
+              if(data.length){
+                error='用户名或邮箱已被注册!';
                 res.json({
                   error:error
                 });

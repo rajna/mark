@@ -20,6 +20,24 @@ angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
           }
         });
     };
+
+    $scope.form = {};
+    $scope.message="";
+    $scope.ak="1000";
+    $scope.showp = function(event) {
+     alert(event);
+  };
+    $scope.reg= function () {
+      alert("ddd");
+      $http.post('/api/reg',$scope.form).
+        success(function(data) {
+          $scope.message=data.error;
+          if(data.success){
+            //$scope.user=data.user;
+            $location.path('/login');
+          }
+        });
+    };
     
   }).
   controller('registerController', function ($scope,$http,$location,$cookieStore) {

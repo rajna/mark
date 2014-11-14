@@ -448,24 +448,23 @@ core-toolbar {
 }
 @media only screen and (min-width: 1200px){
 	.mark-container .mk-container-wrap {
-width: 920px;
-margin-left:auto;
-margin-right: auto; 
-}
+		width: 920px;
+		margin-left:auto;
+		margin-right: auto; 
+		}
 }
 
 @media only screen and (min-width: 992px){
 	.mark-container .mk-container-wrap {
-width: 690px;
-margin-left:auto;
-margin-right: auto;
-}
+		width: 690px;
+		margin-left:auto;
+		margin-right: auto;
+		}
 }
 @media (min-width: 481px) {
     #tabs {
       width: 200px;
     }
-    
   }
 
 
