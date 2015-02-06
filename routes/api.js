@@ -37,11 +37,12 @@ var sio;
 exports.init=function(app,io){
   sio=io;
   sio.sockets.on('connection', function (socket) {
-           console.log("socket connected");
+          console.log("socket connected");
           socket.on('newmark',function(data){
             socket.broadcast.emit('newmarkdone', 
             {
               user: data.user,
+              email:data.email,
               bookname:data.bookname,
               pagenum:data.pagenum,
               bookdesc:data.bookdesc});
@@ -190,6 +191,7 @@ exports.singleBook = function (req, res) {
       var bookid=req.params.id; 
       Mark.find({_id:bookid},function(err,book){
       if(book[0]){
+        book[0].bookdesc="";
         res.json(book[0]);
       }else{
         res.json({error: "未获得数据"});

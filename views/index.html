@@ -12,14 +12,14 @@
     <link href="/img/markweblogo.png" rel="shortcut icon" type="image/png">
   </head>
   <body unresolved>
-    <div id="mk-loading" butterbar ><h3 class="login-logo"><span>MARK</span></h3>
-    <img src="/img/markbg.jpg" style="display:none;">
+    <div id="mk-loading" butterbar><h3 class="login-logo"><span>MARK</span></h3>
+    <img src="/img/markbg.jpg" style="display:none;"/>
     </div>
     <div ng-view>
     </div>
  </body>
  
-</html>
+
   
     
   <script src="/polymer/components/platform/platform.js"></script>
@@ -43,7 +43,7 @@
   <script src='js/lib/angular/angular-cookies.js'></script>
   <script src='js/lib/angular/angular-resource.js'></script>
   <script src='js/lib/angular/angular-animate.js'></script>
-  <script src='ng-polymer-elements-0.1.0/ng-polymer-elements.min.js'></script>
+  <!--<script src='ng-polymer-elements-0.1.0/ng-polymer-elements.min.js'></script>-->
   <script src='js/app.js'></script>
   <script src='js/services.js'></script>
   <script src='js/controllers.js'></script>
@@ -216,12 +216,10 @@
           <div class="row book-desc">[[book.bookdesc]]</div>
           <div class="row book-act">
             <div class="col-xs-8">
-              
               <span class="glyphicon glyphicon-comment" ng-click="addComment(book)"></span>
               <span class="glyphicon glyphicon-share" ng-click="openDuoKan()"></span>
             </div>
             <div class="col-xs-4">
-              
               <span ng-switch on="[[book.user]]">
               <span class="glyphicon glyphicon-bookmark pull-right" ng-switch-when="[[user.name]]"  ng-click="addNewmark(book)"></span>
               <span class="glyphicon glyphicon-remove pull-right" ng-switch-when="[[user.name]]" ng-click="remove($index,book)"></span>
@@ -235,7 +233,7 @@
       </ul>
       <ul ng-switch-when="0" class="media-list booklist">
       <li>
-      <h4 style="padding:20px;margin:0px;color:rgba(0,0,0,0.6);text-align:center;">欢迎使用MARK:添加第一本书的页码吧。</h4></li>
+      <h4 style="padding:20px;margin:0px;color:rgba(0,0,0,0.6);text-align:center;">欢迎使用MARK:添加第一本书吧。</h4></li>
       </ul>
  </div>
 </div>       
@@ -273,7 +271,7 @@
         </div>
         <div class="form-group">
           <label> 描述</label>
-          <input type="text" class="form-control" ng-model='book.bookdesc'/>
+          <input type="text" class="form-control" ng-model='book.bookdesc' required/>
         </div>
         <div class="form-group">
           <label> 当前页码</label>
@@ -475,3 +473,4 @@
 </div>
 </script>
 <!--评论addcommentView end-->
+</html>

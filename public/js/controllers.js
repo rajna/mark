@@ -59,23 +59,36 @@ angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
         });
     };
   }).
-  controller('BooksController', function($scope, $http,$rootScope, $location,$cookieStore,$q,Book) {
-    
-     if(!$cookieStore.get('user')){
+  controller('BooksController', function($scope, $http,$rootScope, $location,$cookieStore,$q,Book,User) {
+     var loginUser=$cookieStore.get('user');
+     if(!loginUser){
       $location.path('/login');
      }
-     $scope.user=$cookieStore.get('user');
-     $scope.books = Book.queryself({user:$cookieStore.get('user').name});
+     $scope.user=loginUser;
+     $scope.books = Book.queryself({user:loginUser.name});
      $scope.form = {};
      $scope.title="MARK";
      $scope.clicked=false;
      $scope.listfilter="个人";
     
-    var url = 'http://fast-ridge-7096.herokuapp.com';
-     var socket = io.connect(url);
+    var url = 'http://fast-ridge-7096.herokuapp.com/';
+    var urltest='http://192.168.1.107:3000/';
+     var socket = io.connect(urltest);
 
      socket.on('newmarkdone', function(data){
-      Android.showNotification(data.user,data.bookname,data.pagenum,data.bookdesc);
+      $http.get('/user/'+loginUser.email+'/fellowlist').
+        success(function(fellow) {
+          var hasFellow="false";
+          console.log(loginUser.name);
+          for(var i in fellow){
+            //alert(fellow[i].name+data.user);
+            if(fellow[i].name==data.user){
+              //alert(fellow[i].name+data.user);
+              Android.showNotification(data.user,data.bookname,data.pagenum,data.bookdesc);
+              break;
+            }
+          }
+        });
      });
 
     $scope.status = {
@@ -241,13 +254,15 @@ controller('searchFellowsController',function($scope,$http,$location,$cookieStor
       $location.path('/');
      }
      
-     var url = 'http://fast-ridge-7096.herokuapp.com';
-     var socket = io.connect(url);
+     var url = 'http://fast-ridge-7096.herokuapp.com/';
+     var urltest='http://192.168.1.107:3000/';
+     var socket = io.connect(urltest);
 
     $scope.book= Book.get({id: $routeParams.id});
     $scope.save=function(){
       $scope.book.$save(function(book){
           socket.emit('newmark',{user:user.name,
+                                 email:user.email,
                                  bookname:book.book.name,
                                  pagenum:book.book.pagenum,
                                  bookdesc:book.book.bookdesc});
