@@ -1,0 +1,139 @@
+<link rel="import" href="../../components/polymer/polymer.html">
+
+<link rel="import" href="../../components/paper-dialog/paper-dialog-transition.html">
+<link href="../../components/paper-dialog/paper-dialog.html" rel="import">
+<link rel="import" href="../../components/core-ajax/core-ajax.html">
+<link href="../../components/paper-button/paper-button.html" rel="import">
+<link rel="import" href="../../components/paper-input/paper-input.html">
+
+
+<polymer-element name="guwu-table" attributes="data columns sortColumn sortDescending">
+    <template>
+      <style>
+    paper-dialog {
+      width: 50%;
+      min-width: 350px;
+    }
+    .c-form{
+      width:90%;
+      margin:24px auto 0;
+    }
+    .c-form paper-input{
+      width:100%;
+    }
+      table.g_table {
+  width: 100%;
+  margin:0 auto;
+  border-collapse: collapse;
+      }
+      table.g_table tr:nth-of-type(even) {
+
+cursor: pointer;
+border-radius: 5px;
+background: rgba(118,117,128,0.05);
+      }
+      table.g_table th {
+  color: rgba(145,145,145,0.7);
+  font-weight: bold;
+  text-align: center;
+      }
+      table.g_table td,
+      table.g_table th {
+  padding: 0.75em 0;
+margin: 0.3em 0;
+  text-align: left;
+  color: #757575;
+      }
+      table.g_table th {
+  font-weight: 800;
+  cursor: pointer;
+      }
+      table.g_table td:first-of-type {
+  text-align: left;
+      }
+    </style>
+
+    <paper-dialog heading="编辑" id="editPanel" transition="paper-dialog-transition-center">
+          <div class="c-form">
+            <div class="f-inner">
+              <core-ajax id="ajaxregform" handleAs="json" response="{{response}}" on-core-response="{{handleReg}}" url="" params="{{formdata}}" method="post" ></core-ajax>
+              <paper-input label="名字" inputValue="{{formdata.name}}" placeholder="名字:{{singleItem.name}}" floatingLabel></paper-input>
+              <paper-input label="价格" min="0" inputValue="{{formdata.user}}" placeholder="价格:{{singleItem.user}}"  floatingLabel></paper-input>
+              <paper-input label="类别"  inputValue="{{formdata.pagenum}}" placeholder="类别:{{singleItem.pagenum}}" floatingLabel></paper-input>
+              <paper-input label="描述"  inputValue="{{formdata.bookdesc}}" placeholder="描述:{{singleItem.bookdesc}}" floatingLabel></paper-input>
+            </div>
+          </div>
+
+    <paper-button label="取消" affirmative on-click="{{cansleEdit}}"></paper-button>
+    <paper-button label="确定" affirmative autofocus></paper-button>
+
+  </paper-dialog>
+      <table class="g_table">
+        <tr>
+          <template repeat="{{column in columns}}">
+            <th on-click="{{changeSort}}" style="{{sortColumn==column.name ? (sortDescending ? 'text-decoration:overline' : 'text-decoration:underline') : ''}}">{{!(column.title) ? column.name : column.title}}</th>
+          </template>
+        </tr>
+        <template repeat="{{row in data | sortByKey(sortColumn, sortDescending)}}">
+          <tr>
+            <template repeat="{{column in columns}}">
+              <template if="{{column.name!='action'}}">
+                <td>
+                  <img style="width:30px;" src="{{row[column.name]}}" hidden?="{{column.name!='bookface'}}"></img>
+                  <span hidden?="{{column.name=='bookface'}}">{{row[column.name]}}</span>
+                </td>
+              </template>
+              <template if="{{column.name=='action'}}">
+                <td on-click="{{editeRow}}"><paper-button label="修改" ></paper-button></td>
+              </template>
+            </template>
+          </tr>
+        </template>
+      </table>
+    </template>
+    
+    <script>
+      PolymerExpressions.prototype.sortByKey = function(array, key, desc) {
+          return array.sort(function(a, b) {
+              var x = a[key];
+              var y = b[key];
+
+              if (typeof x == "string"){
+                x = x.toLowerCase(); 
+                y = y.toLowerCase();
+              }
+              if(desc){
+                return ((x < y) ? 1 : ((x > y) ? -1 : 0));
+              }else{
+                return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+              }
+          });
+      };
+      Polymer('guwu-table', {
+          data: [],
+          columns: [],
+          sortColumn: null,
+          sortDescending: false,
+          singleItem:null,
+          formdata:{},
+          changeSort: function(e,p,o){
+            var clickedSortColumn = o.templateInstance_.model.column.name;
+            if(clickedSortColumn == this.sortColumn){
+              this.sortDescending = !this.sortDescending;
+            }else{
+              this.sortColumn = clickedSortColumn;
+            }
+          },
+          cansleEdit:function(event, detail, sender){
+            dialog.toggle();
+          },
+          editeRow:function(event, detail, sender){
+            this.singleItem =sender.templateInstance_.model.row;
+            var dialog = this.$.editPanel;
+            dialog.toggle();
+          }
+      });
+    </script>
+    
+</polymer-element>
+

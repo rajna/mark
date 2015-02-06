@@ -1,0 +1,72 @@
+body {
+  font-family: sans-serif;
+}
+.c_h_logo{
+	width:140px;
+	margin-top: 24px;
+	margin-bottom: 36px;
+}
+core-scroll-header-panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+#mainheader{
+    height: 256px;
+}
+
+.bottom-text {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+
+.c_m_title{
+	font-size: 45px;
+	-webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+
+.subtitle{
+	margin-top: 20px;
+	opacity: .6;
+}
+
+core-toolbar {
+  background-color: #3f51b5;
+  color:#fff;
+  box-shadow: none;
+}
+
+.content {
+  padding: 24px 64px;
+}
+
+/* drawer is always visible on a wide screen
+   so menu button isn't required */
+core-drawer-panel:not([narrow]) #navicon {
+  display: none;
+}
+
+.c-product-main .c-p-caption{
+padding: 24px;
+  display: block;
+  margin: 0.3em 0 0.6em 0;
+  cursor: pointer;
+  border-radius: 5px;
+  background: #eeeeee;
+}
+.c-p-addProduct{
+  width: 50%;
+      min-width: 350px;
+}
+.c-form{
+      width:90%;
+      margin:24px auto 0;
+    }
+    .c-form paper-input{
+      width:100%;
+    }
