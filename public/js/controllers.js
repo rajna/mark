@@ -132,6 +132,7 @@ angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
     }
 	  $scope.addMark= function () {
       $scope.form.user=$cookieStore.get('user').name;
+
 	    $http.post('/books',$scope.form).
 	      success(function(data) {
 
@@ -260,6 +261,7 @@ controller('searchFellowsController',function($scope,$http,$location,$cookieStor
 
     $scope.book= Book.get({id: $routeParams.id});
     $scope.save=function(){
+      console.log($scope.book);
       $scope.book.$save(function(book){
           socket.emit('newmark',{user:user.name,
                                  email:user.email,

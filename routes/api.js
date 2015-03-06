@@ -82,7 +82,7 @@ exports.login=function(req,res){
         
 }
 
-//用户注册API
+//用户注册
 exports.reg=function(req,res){
   //在post请求后的反应
    //post信息中发送过来的name,password和repassword,用req.body获取
@@ -163,7 +163,6 @@ exports.booklist = function (req,res) {
       
     };
 
-//书籍列表API
 exports.selfbooklist = function (req, res) {
         var query=Mark.find({});
         query.where('user').in([req.params.user]);
@@ -200,11 +199,12 @@ exports.singleBook = function (req, res) {
      });  
     };
 
-//单个书籍API
+
 exports.singleBookftComment = function (req, res) { 
       var bookid=req.params.id; 
       Mark.findOne({_id:bookid}).populate('owner').exec(function(err,book){
       if(book){
+        
         console.log(book);
         res.json(book);
       }else{
