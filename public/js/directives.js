@@ -14,11 +14,7 @@ angular.module('myApp.directives', []).
 
   			$rootScope.$on('$routeChangeSuccess',function(){
           element.addClass('loading-hide');
-  				if(!localStorage.componentReady){
-            element.removeClass('loading-hide');
-          }else{
-            element.addClass('loading-hide');
-          }
+  				
   			});
 
 
