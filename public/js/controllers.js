@@ -5,7 +5,7 @@
 angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
   controller('loginController', function ($scope,$http,$location,$cookieStore) {
     $scope.logo="MARK";
-
+    console.log(localStorage.componentReady);
     if($cookieStore.get('user')){
       $location.path('/mark');
      }
@@ -23,12 +23,7 @@ angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
 
     $scope.form = {};
     $scope.message="";
-    $scope.ak="1000";
-    $scope.showp = function(event) {
-     alert(event);
-  };
     $scope.reg= function () {
-      alert("ddd");
       $http.post('/api/reg',$scope.form).
         success(function(data) {
           $scope.message=data.error;

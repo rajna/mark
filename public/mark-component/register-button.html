@@ -58,6 +58,11 @@
       page: 0,
       subpage: 0,
 
+      ready: function() {
+        console.log("button"+new Date());
+        localStorage.componentReady=true;
+      },
+
       transition: function(e) {
 
         var el = e.target;

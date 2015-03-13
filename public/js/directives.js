@@ -13,8 +13,12 @@ angular.module('myApp.directives', []).
   			});
 
   			$rootScope.$on('$routeChangeSuccess',function(){
-  				element.addClass('loading-hide');
+  				if(localStorage.componentReady){
+            element.addClass('loading-hide');
+          }
   			});
+
+        
   		}
   	}
   }]).directive('focus',function(){

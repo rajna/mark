@@ -197,6 +197,10 @@
     noTransition: true,
     msg:"",
 
+    ready: function() {
+        console.log("animated"+new Date());
+    },
+
     back: function() {
       this.noTransition = true;
       this.fire('nested-back');
