@@ -5,7 +5,6 @@
 angular.module('myApp.controllers', ['ngSanitize','ngCookies']).
   controller('loginController', function ($scope,$http,$location,$cookieStore) {
     $scope.logo="MARK";
-    console.log(localStorage.componentReady);
     if($cookieStore.get('user')){
       $location.path('/mark');
      }
