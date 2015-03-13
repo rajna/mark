@@ -13,8 +13,10 @@ angular.module('myApp.directives', []).
   			});
 
   			$rootScope.$on('$routeChangeSuccess',function(){
-  				if(localStorage.componentReady){
-            console.log("true"+new Date());
+          element.addClass('loading-hide');
+  				if(!localStorage.componentReady){
+            element.removeClass('loading-hide');
+          }else{
             element.addClass('loading-hide');
           }
   			});

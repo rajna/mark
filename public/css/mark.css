@@ -3,12 +3,12 @@ body{background-color: #f5f5f5;}
 	padding-top: 192px;
     height:100%;
     width:100%;
-    background-color: #e91e63;
+    background-color: transparent;
     position: absolute;
 }
 #mk-loading .login-logo{
-	border-color:#fff transparent #fff transparent;
-	color:#fff;
+	border-color:#e91e63 transparent #e91e63 transparent;
+	color:#e91e63;
 	 -webkit-animation: mk-loading 6s infinite alternate;
     animation: mk-loading 6s infinite alternate;
 }
