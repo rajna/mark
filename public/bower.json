@@ -1,0 +1,26 @@
+{
+  "name": "newmark",
+  "version": "0.0.1",
+  "homepage": "https://github.com/rajna/mark",
+  "authors": [
+    "guwu <guwu1223@gmail.com>"
+  ],
+  "description": "记录我的阅读",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-animate": "~1.3.14",
+    "angular-aria": "~1.3.14",
+    "angular-material": "~0.8.3",
+    "angular-route": "~1.3.14",
+    "angular-sanitize": "~1.3.14",
+    "angular-cookies": "~1.3.14",
+    "angular-resource": "~1.3.14"
+  }
+}
